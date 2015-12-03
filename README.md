@@ -12,13 +12,13 @@ and it is:
 
 ##Installation
 
-* Simply drag the folder `DHDynamicLineChart` into your project and import `DHDynamicLineChart.h` in your file:<br>
+* Simply drag the folder `DHDynamicLineChart` into your project and import `DHDynamicLineChart.h` in your file:
 
         #import "DHDynamicLineChart.h"
 
-* You also need to add `CoreGraphic.framework` into your project. 
+* You also need to add `CoreGraphic` library into your project. 
 
-##Usage
+##How to use
 
 * Initialization:
     
