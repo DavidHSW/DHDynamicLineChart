@@ -14,9 +14,9 @@
 		686F8A421C0C3EDA00F4B1CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 686F8A411C0C3EDA00F4B1CE /* Images.xcassets */; };
 		686F8A451C0C3EDA00F4B1CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686F8A431C0C3EDA00F4B1CE /* LaunchScreen.xib */; };
 		686F8A511C0C3EDA00F4B1CE /* DHDynamicLineChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A501C0C3EDA00F4B1CE /* DHDynamicLineChartTests.m */; };
-		686F8A5C1C0C3F2F00F4B1CE /* DHDynamicLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A5B1C0C3F2F00F4B1CE /* DHDynamicLineChart.m */; };
 		686F8A5E1C0C400F00F4B1CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F8A5D1C0C400F00F4B1CE /* CoreGraphics.framework */; };
-		686F8A671C0F35E200F4B1CE /* DHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A661C0F35E200F4B1CE /* DHLineView.m */; };
+		686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */; };
+		686F8A711C10217700F4B1CE /* DHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6F1C10217700F4B1CE /* DHLineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +43,11 @@
 		686F8A4A1C0C3EDA00F4B1CE /* DHDynamicLineChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DHDynamicLineChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		686F8A4F1C0C3EDA00F4B1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		686F8A501C0C3EDA00F4B1CE /* DHDynamicLineChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChartTests.m; sourceTree = "<group>"; };
-		686F8A5A1C0C3F2F00F4B1CE /* DHDynamicLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDynamicLineChart.h; sourceTree = "<group>"; };
-		686F8A5B1C0C3F2F00F4B1CE /* DHDynamicLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChart.m; sourceTree = "<group>"; };
 		686F8A5D1C0C400F00F4B1CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		686F8A651C0F35E200F4B1CE /* DHLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLineView.h; sourceTree = "<group>"; };
-		686F8A661C0F35E200F4B1CE /* DHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLineView.m; sourceTree = "<group>"; };
+		686F8A6C1C10217700F4B1CE /* DHDynamicLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDynamicLineChart.h; sourceTree = "<group>"; };
+		686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChart.m; sourceTree = "<group>"; };
+		686F8A6E1C10217700F4B1CE /* DHLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLineView.h; sourceTree = "<group>"; };
+		686F8A6F1C10217700F4B1CE /* DHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +95,8 @@
 				686F8A391C0C3EDA00F4B1CE /* AppDelegate.m */,
 				686F8A3B1C0C3EDA00F4B1CE /* ViewController.h */,
 				686F8A3C1C0C3EDA00F4B1CE /* ViewController.m */,
+				686F8A6B1C10217700F4B1CE /* DHDynamicLIneChart */,
 				686F8A3E1C0C3EDA00F4B1CE /* Main.storyboard */,
-				686F8A681C0F35EB00F4B1CE /* DHDynamicLineChart */,
 				686F8A411C0C3EDA00F4B1CE /* Images.xcassets */,
 				686F8A431C0C3EDA00F4B1CE /* LaunchScreen.xib */,
 				686F8A341C0C3EDA00F4B1CE /* Supporting Files */,
@@ -130,15 +130,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		686F8A681C0F35EB00F4B1CE /* DHDynamicLineChart */ = {
+		686F8A6B1C10217700F4B1CE /* DHDynamicLIneChart */ = {
 			isa = PBXGroup;
 			children = (
-				686F8A5A1C0C3F2F00F4B1CE /* DHDynamicLineChart.h */,
-				686F8A5B1C0C3F2F00F4B1CE /* DHDynamicLineChart.m */,
-				686F8A651C0F35E200F4B1CE /* DHLineView.h */,
-				686F8A661C0F35E200F4B1CE /* DHLineView.m */,
+				686F8A6C1C10217700F4B1CE /* DHDynamicLineChart.h */,
+				686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */,
+				686F8A6E1C10217700F4B1CE /* DHLineView.h */,
+				686F8A6F1C10217700F4B1CE /* DHLineView.m */,
 			);
-			name = DHDynamicLineChart;
+			path = DHDynamicLIneChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,8 +243,8 @@
 			files = (
 				686F8A3D1C0C3EDA00F4B1CE /* ViewController.m in Sources */,
 				686F8A3A1C0C3EDA00F4B1CE /* AppDelegate.m in Sources */,
-				686F8A671C0F35E200F4B1CE /* DHLineView.m in Sources */,
-				686F8A5C1C0C3F2F00F4B1CE /* DHDynamicLineChart.m in Sources */,
+				686F8A711C10217700F4B1CE /* DHLineView.m in Sources */,
+				686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */,
 				686F8A371C0C3EDA00F4B1CE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
