@@ -8,21 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol DHDynamicLineChartDataSource <NSObject>
-
-@end
-
 @interface DHDynamicLineChart : UIView
 
-@property(weak,nonatomic)id<DHDynamicLineChartDataSource> delegate;
-//@property(nonatomic, readonly)NSRange xAxisRange;
-//@property(nonatomic, readonly)NSRange yAxisRange;
 @property (nonatomic)CGFloat lineWidth;
 @property (nonatomic)UIColor *lineColor;
+@property (strong,nonatomic)UIColor *bgColor;
 
 - (instancetype)initWithFram:(CGRect)frame xAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues;
 
 - (void)refreshLineChartWithYValue:(CGFloat)yValue atIndex:(NSInteger)index;
+
+-(void)refreshLineChartWithYValues:(NSArray *)yValues;
+
+- (void)refreshLineChartForSlider:(UISlider *)slider;
 
 - (void)updateLabelsOfXAxis:(NSArray *)xLabels YAxis:(NSArray *)yLabels;
 

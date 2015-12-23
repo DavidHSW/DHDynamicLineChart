@@ -19,7 +19,7 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
         _lineWidth = 1.0;
         _lineColor = [UIColor redColor];
     }
@@ -46,7 +46,7 @@
     
     //draw line
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, self.frame);
+    CGContextClearRect(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
     CGContextSetLineWidth(context, self.lineWidth);
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
     for (int i = 0; i < self.controlPoints.count - 1; i++) {//TODO may over bound

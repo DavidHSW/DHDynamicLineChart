@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "DHDynamicLineChart.h"
+#import "DHDynamicLIneChart/DHDynamicLineChart.h"
+#import "DHDynamicLIneChart/DHLineView.h"
 
-@interface ViewController ()<DHDynamicLineChartDataSource>
+@interface ViewController ()
 
 @property (strong, nonatomic) DHDynamicLineChart *myLineChart;
 @property (copy,nonatomic)NSArray *controlPoints_xRatio;
@@ -21,10 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _controlPoints_xRatio = @[@0.125,@0.25,@0.375,@1];
-    _myLineChart = [[DHDynamicLineChart alloc] initWithFram:CGRectMake(0, 0, 200, 200)
+    _myLineChart = [[DHDynamicLineChart alloc] initWithFram:CGRectMake(0, 80, 500, 200)
                                                 xAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                                 yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
                                    controlPointsXRatioValue:_controlPoints_xRatio];
+    _myLineChart.bgColor = [UIColor grayColor];
     [self.view addSubview:self.myLineChart];
 }
 
@@ -42,9 +44,12 @@
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     if (seg.selectedSegmentIndex == 0) {
         [self.myLineChart updateLabelsOfXAxis:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]  YAxis:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]];
+        self.controlPoints_xRatio = @[@0.125,@0.25,@0.375,@1];
     }else {
         [self.myLineChart updateLabelsOfXAxis:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"] YAxis:@[@"0",@"5",@"10",@"15",@"20",@"25",@"30",@"35"]];
+        self.controlPoints_xRatio = @[@0.25,@0.4,@0.375,@0.8];
     }
+    [self.myLineChart setControlPointsWithXRatioValues:self.controlPoints_xRatio];
 }
 
 @end

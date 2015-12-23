@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,31 +18,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="hli-Oc-wr7">
-                                <rect key="frame" x="127" y="216" width="330" height="31"/>
+                                <rect key="frame" x="127" y="216" width="229" height="31"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="4eN-tc-MxH"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="M22-rD-4DH">
-                                <rect key="frame" x="127" y="263" width="330" height="31"/>
+                                <rect key="frame" x="127" y="263" width="229" height="31"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="GF0-cH-2Xb"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="KaB-ot-vJX">
-                                <rect key="frame" x="127" y="310" width="330" height="31"/>
+                                <rect key="frame" x="127" y="310" width="229" height="31"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="jYt-3R-pAw"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="NWN-Kw-c0O">
-                                <rect key="frame" x="127" y="359" width="330" height="31"/>
+                                <rect key="frame" x="127" y="359" width="229" height="31"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="Unr-Mq-hpw"/>
                                 </connections>
                             </slider>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-jE-3w0">
-                                <rect key="frame" x="231" y="481" width="123" height="29"/>
+                                <rect key="frame" x="389" y="257" width="123" height="29"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
@@ -59,9 +60,4 @@
             <point key="canvasLocation" x="483" y="532"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
 </document>
