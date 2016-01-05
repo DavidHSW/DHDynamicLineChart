@@ -30,6 +30,8 @@ and it is:
                                                     xAxisLabels:_xAxisLabels
                                                     yAxisLabels:_yAxisLabels
                                        controlPointsXRatioValue:_positions];
+        _myLineChart.bgColor = [UIColor grayColor];
+        _myLineChart.lineWidth = 2;
                                        
         [self.view addSubview:_myLineChart];
 
@@ -38,8 +40,15 @@ and it is:
 * Control line at different positions:
 
         [self.myLineChart refreshLineChartWithYValue:slider.value atIndex:self.index];
+        
+        or
+        [self.myLineChart refreshLineChartWithYValues:slider.valueArray];
 
   The `index` indicates the order of control points.
+  
+* If you are using slider and the its tag is consistent with the index of control points array, you can just refresh chart like this:
+
+       [self.myLineChart refreshLineChartForSlider:slider];
 
 * Update labels of x/y axises:
 
