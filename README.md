@@ -48,7 +48,7 @@ and it is:
   
 * If you are using slider and the its tag is consistent with the index of control points array, you can just refresh chart like this:
 
-       [self.myLineChart refreshLineChartForSlider:slider];
+        [self.myLineChart refreshLineChartForSlider:slider];
 
 * Update labels of x/y axises:
 
