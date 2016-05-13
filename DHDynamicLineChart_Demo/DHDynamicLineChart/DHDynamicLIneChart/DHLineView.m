@@ -49,7 +49,7 @@
     CGContextClearRect(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
     CGContextSetLineWidth(context, self.lineWidth);
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
-    for (int i = 0; i < self.controlPoints.count - 1; i++) {//TODO may over bound
+    for (int i = 0; i < self.controlPoints.count - 1; i++) {
         CGPoint fromPoint;
         CGPoint toPoint;
         [(NSValue *)self.controlPoints[i] getValue:&fromPoint];

@@ -18,7 +18,7 @@
 
 - (void)refreshLineChartWithYValue:(CGFloat)yValue atIndex:(NSInteger)index;
 
--(void)refreshLineChartWithYValues:(NSArray *)yValues;
+- (void)refreshLineChartWithYValues:(NSArray *)yValues;
 
 - (void)refreshLineChartForSlider:(UISlider *)slider;
 

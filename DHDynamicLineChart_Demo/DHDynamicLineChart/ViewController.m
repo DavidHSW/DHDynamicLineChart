@@ -19,7 +19,7 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad {    
     [super viewDidLoad];
     _controlPoints_xRatio = @[@0.125,@0.25,@0.375,@1];
     _myLineChart = [[DHDynamicLineChart alloc] initWithFram:CGRectMake(0, 80, 500, 200)
