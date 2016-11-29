@@ -19,6 +19,7 @@
 @property(nonatomic)CGFloat yAxisStartPosition;
 
 @property(strong,nonatomic)NSMutableArray *controlPoints;
+@property(strong,nonatomic)NSMutableArray *ratioValues;
 
 @property(copy,nonatomic)NSArray *labelSource_x;
 @property(copy,nonatomic)NSArray *labelSource_y;
@@ -56,9 +57,29 @@
     return self;
 }
 
+- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues {
+ 
+    if (self = [super init]) {
+        _innerFrame = CGRectZero;
+        _lineView = [[DHLineView alloc] init];
+        _lineView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self addSubview:_lineView];
+        
+        self.labelSource_x = xLabels;//Use 'self.' to 'copy' array
+        self.labelSource_y = yLabels;
+        self.ratioValues = [[NSMutableArray alloc] init];
+        [self.ratioValues addObjectsFromArray:ratioValues];
+        
+        if (!_bgColor) {
+            _bgColor = [UIColor blueColor]; //Default bg color
+        }
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
-    [self drawGridLines];
+    [self drawGridLinesWithRect:rect];
 }
 
 - (void)setLineColor:(UIColor *)lineColor
@@ -75,6 +96,16 @@
 {
     _bgColor = bgColor;
     [self setNeedsDisplay];
+}
+
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    
+    self.innerFrame = self.frame;
+    [self configureChartWithXAxisLabels:self.labelSource_x yAxisLabels:self.labelSource_y];
+    [self setControlPointsWithXRatioValues:self.ratioValues];
+
 }
 
 #pragma mark - Add labels
@@ -123,8 +154,12 @@
 }
 
 #pragma mark - Draw grid lines
-- (void)drawGridLines
+- (void)drawGridLinesWithRect:(CGRect)rect
 {
+    if (CGRectEqualToRect(_innerFrame, CGRectZero)) {
+        _innerFrame = rect;
+    }
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //This code clear background color also
@@ -252,8 +287,6 @@
         {
             break;
         }
-
-
     }
 }
 

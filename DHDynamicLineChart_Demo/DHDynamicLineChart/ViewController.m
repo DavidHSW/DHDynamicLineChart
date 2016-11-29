@@ -22,18 +22,23 @@
 - (void)viewDidLoad {    
     [super viewDidLoad];
     _controlPoints_xRatio = @[@0.125,@0.25,@0.375,@1];
-    _myLineChart = [[DHDynamicLineChart alloc] initWithFram:CGRectMake(0, 80, 500, 200)
-                                                xAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
+    _myLineChart = [[DHDynamicLineChart alloc] initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                                 yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
                                    controlPointsXRatioValue:_controlPoints_xRatio];
     _myLineChart.bgColor = [UIColor grayColor];
-    [self.view addSubview:self.myLineChart];
+    _myLineChart.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_myLineChart];
+
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_myLineChart(300)]"
+                                                                                    options:0
+                                                                                    metrics:nil
+                                                                                      views:NSDictionaryOfVariableBindings(_myLineChart)]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_myLineChart]|"
+                                                                                    options:0
+                                                                                    metrics:nil
+                                                                                      views:NSDictionaryOfVariableBindings(_myLineChart)]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)updateLineChart:(id)sender {
     UISlider *slider = (UISlider *)sender;
     if(slider.tag >= 0 && slider.tag < self.controlPoints_xRatio.count){

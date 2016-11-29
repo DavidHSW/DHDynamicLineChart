@@ -16,6 +16,8 @@
 
 - (instancetype)initWithFram:(CGRect)frame xAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues;
 
+- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues;
+
 - (void)refreshLineChartWithYValue:(CGFloat)yValue atIndex:(NSInteger)index;
 
 - (void)refreshLineChartWithYValues:(NSArray *)yValues;
