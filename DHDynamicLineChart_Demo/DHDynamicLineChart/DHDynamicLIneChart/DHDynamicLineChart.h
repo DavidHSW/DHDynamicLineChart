@@ -12,13 +12,14 @@
 
 @property (nonatomic)CGFloat lineWidth;
 @property (nonatomic)UIColor *lineColor;
-@property (strong,nonatomic)UIColor *bgColor;
+@property (nonatomic)CGFloat gridLineWidth;
+@property (nonatomic)UIColor *gridLineColor;
 
-- (instancetype)initWithFram:(CGRect)frame xAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues;
+@property (nonatomic)CGFloat yMax;
 
 - (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues;
 
-- (void)refreshLineChartWithYValue:(CGFloat)yValue atIndex:(NSInteger)index;
+- (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index;
 
 - (void)refreshLineChartWithYValues:(NSArray *)yValues;
 

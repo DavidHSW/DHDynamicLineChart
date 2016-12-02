@@ -21,28 +21,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="hli-Oc-wr7">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="600" translatesAutoresizingMaskIntoConstraints="NO" id="hli-Oc-wr7">
                                 <rect key="frame" x="181" y="467" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="4eN-tc-MxH"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="M22-rD-4DH">
+                            <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="M22-rD-4DH">
                                 <rect key="frame" x="181" y="514" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="GF0-cH-2Xb"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="KaB-ot-vJX">
+                            <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="KaB-ot-vJX">
                                 <rect key="frame" x="181" y="561" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="jYt-3R-pAw"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="25" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="NWN-Kw-c0O">
+                            <slider opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="NWN-Kw-c0O">
                                 <rect key="frame" x="181" y="610" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
