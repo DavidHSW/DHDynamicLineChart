@@ -201,8 +201,9 @@
     
     if (!ratioValues) return;
     
-    _controlPoints = [[NSMutableArray alloc] init];
+    if (!_controlPoints) { _controlPoints = [[NSMutableArray alloc] init]; }
     
+    [_controlPoints removeAllObjects];
     CGFloat chartWidth = _xGridLineInterval * _labelSource_x.count;
     [ratioValues sortedArrayUsingSelector:@selector(compare:)];
     for(NSNumber *value in ratioValues)

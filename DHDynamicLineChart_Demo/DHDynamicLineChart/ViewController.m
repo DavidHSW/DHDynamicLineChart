@@ -57,7 +57,7 @@
         self.controlPoints_xRatio = @[@0,@0.125,@0.25,@0.375];
     }else {
         [self.myLineChart updateLabelsOfXAxis:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"] YAxis:@[@"0",@"5",@"10",@"15",@"20",@"25",@"30",@"35"]];
-        self.controlPoints_xRatio = @[@0,@0.142,@0.284,@0.424];
+        self.controlPoints_xRatio = @[@0,@(1/6),@(2/6),@(3/6)];
     }
     [self.myLineChart setControlPointsWithXRatioValues:self.controlPoints_xRatio];
 }
