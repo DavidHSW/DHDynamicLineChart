@@ -202,8 +202,9 @@
     if (!ratioValues) return;
     
     _controlPoints = [[NSMutableArray alloc] init];
-    [ratioValues sortedArrayUsingSelector:@selector(compare:)];
     
+    CGFloat chartWidth = _xGridLineInterval * _labelSource_x.count;
+    [ratioValues sortedArrayUsingSelector:@selector(compare:)];
     for(NSNumber *value in ratioValues)
     {
         CGFloat ratio = value.floatValue;
@@ -212,7 +213,7 @@
         }else if(ratio < 0) {
             ratio = 0.0;
         }
-        CGFloat newPosition = ratio * _xGridLineInterval * (ratioValues.count - 1) + _leftTopOriginalPosition.x;
+        CGFloat newPosition = ratio * chartWidth + _leftTopOriginalPosition.x;
         [_controlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newPosition, _yAxisStartPosition)]];
     }
 }
