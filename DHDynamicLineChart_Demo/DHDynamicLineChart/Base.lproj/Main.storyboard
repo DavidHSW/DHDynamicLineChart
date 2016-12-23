@@ -50,11 +50,12 @@
                                 </connections>
                             </slider>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-jE-3w0">
-                                <rect key="frame" x="443" y="508" width="123" height="29"/>
+                                <rect key="frame" x="443" y="508" width="230" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
+                                    <segment title=""/>
                                 </segments>
                                 <connections>
                                     <action selector="changeChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="wbJ-AO-EoL"/>

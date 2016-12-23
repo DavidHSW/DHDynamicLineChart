@@ -19,7 +19,7 @@
     CGFloat _yAxisStartPosition;
     
     NSMutableArray *_controlPoints;
-    NSArray *_ratioValues;
+    NSArray *_xRatios;
     
     NSArray *_labelSource_x;
     NSArray *_labelSource_y;
@@ -36,17 +36,17 @@
     //Default labels and control positions
     return [self initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                          yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-            controlPointsXRatioValue:@[@0.125,@0.25,@0.375,@0.5]];
+               controlPointsByXRatios:@[@0.125,@0.25,@0.375,@0.5]];
 }
 
 //Designated initializer.
-- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues {
- 
+- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)xRatios {
+
     if (self = [super init]) {
         
         _labelSource_x = xLabels;
         _labelSource_y = yLabels;
-        _ratioValues = ratioValues;
+        _xRatios = xRatios;
         
         _lineView = [[DHLineView alloc] init];
         _lineView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -66,7 +66,7 @@
     
     [self removeAllLabels];
     [self configureChartWithXAxisLabels:_labelSource_x yAxisLabels:_labelSource_y inRect:rect];
-    [self setControlPointsWithXRatioValues:_ratioValues];
+    [self setControlPointsWithXRatios:_xRatios];
     [self drawGridLinesWithRect:rect];
 }
 
@@ -168,83 +168,44 @@
     [_lineView drawLineWithControlPoints:_controlPoints];
 }
 
--(void)refreshLineChartWithYValues:(NSArray *)yValues {
+- (void)refreshLineChartWithYRatios:(NSArray *)yRatios {
+
+    NSUInteger loopCount = MIN(yRatios.count, _controlPoints.count);
     
-    if (yValues.count > _controlPoints.count) { return; }
-    
-    for (int i = 0; i < _controlPoints.count; i++) {
-        [self refreshLineChartWithYRatio:((NSNumber *)yValues[i]).floatValue atIndex:i];
+    for (int i = 0; i < loopCount; i++) {
+        [self refreshLineChartWithYRatio:((NSNumber *)yRatios[i]).floatValue atIndex:i];
     }
 }
 
-- (void)refreshLineChartForSlider:(UISlider *)slider {
-    
-    if (slider.tag < 0 || slider.tag >= _controlPoints.count) {
-        NSLog(@"slider's tag(index) is out of range");
-        return;
-    }
-    
-    CGFloat currentV = slider.value;
-    CGFloat maxV = slider.maximumValue;
-    CGFloat yAxixLength = _yAxisStartPosition - _leftTopOriginalPosition.y;
-    [self refreshLineChartWithYRatio:(currentV * yAxixLength / maxV) atIndex:slider.tag];
-}
+- (void)updateWithXAxisLabels:(NSArray *)xLabels YAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)ratios {
 
--(void)updateLabelsOfXAxis:(NSArray *)xLabels YAxis:(NSArray *)yLabels {
-    
     _labelSource_x = xLabels;
     _labelSource_y = yLabels;
+    [self setControlPointsWithXRatios:ratios];
+    
     [self setNeedsDisplay];
 }
 
-- (void)setControlPointsWithXRatioValues:(NSArray *)ratioValues {
-    
-    if (!ratioValues) return;
-    
+- (void)setControlPointsWithXRatios:(NSArray *)ratios {
+
+    if (!ratios) return;
     if (!_controlPoints) { _controlPoints = [[NSMutableArray alloc] init]; }
     
+    _xRatios = ratios;
     [_controlPoints removeAllObjects];
     CGFloat chartWidth = _xGridLineInterval * _labelSource_x.count;
-    [ratioValues sortedArrayUsingSelector:@selector(compare:)];
-    for(NSNumber *value in ratioValues)
+    [ratios sortedArrayUsingSelector:@selector(compare:)];
+    for(NSNumber *value in ratios)
     {
         CGFloat ratio = value.floatValue;
         if (ratio > 1) {
             ratio = 1.0;
-        }else if(ratio < 0) {
+        }
+        else if(ratio < 0) {
             ratio = 0.0;
         }
         CGFloat newPosition = ratio * chartWidth + _leftTopOriginalPosition.x;
         [_controlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newPosition, _yAxisStartPosition)]];
-    }
-}
-
-- (void)addControlPointWithXRatioValue:(CGFloat)ratioValue {
-    
-    CGFloat newPosition = ratioValue * _xGridLineInterval * (_controlPoints.count - 1) + _leftTopOriginalPosition.x;
-    
-    if (_controlPoints.count == 0) {
-        [_controlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newPosition, _rightBottomOriginalPosition.y)]];
-        return;
-    }
-    
-    for (int i = 0; i < _controlPoints.count; i++)
-    {
-        if(i == (_controlPoints.count - 1))
-        {
-            [_controlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newPosition, _rightBottomOriginalPosition.y)]];
-        }
-        
-        NSValue *value = (NSValue *)_controlPoints[i];
-        CGPoint point;
-        [value getValue:&point];
-        
-        if (point.x > newPosition) {
-            [_controlPoints insertObject:[NSValue valueWithCGPoint:CGPointMake(newPosition, _rightBottomOriginalPosition.y)] atIndex:i];
-            break;
-        }else if(point.x == newPosition) {
-            break;
-        }
     }
 }
 

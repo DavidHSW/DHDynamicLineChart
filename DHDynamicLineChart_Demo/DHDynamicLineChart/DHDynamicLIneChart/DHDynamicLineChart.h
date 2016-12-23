@@ -17,18 +17,14 @@
 
 @property (nonatomic)CGFloat yMax;
 
-- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsXRatioValue:(NSArray *)ratioValues;
+- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)xRatios;
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index;
 
-- (void)refreshLineChartWithYValues:(NSArray *)yValues;
+- (void)refreshLineChartWithYRatios:(NSArray *)yRatios;
 
-- (void)refreshLineChartForSlider:(UISlider *)slider;
+- (void)updateWithXAxisLabels:(NSArray *)xLabels YAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)ratios;
 
-- (void)updateLabelsOfXAxis:(NSArray *)xLabels YAxis:(NSArray *)yLabels;
-
-- (void)setControlPointsWithXRatioValues:(NSArray *)ratioValues;
-
-- (void)addControlPointWithXRatioValue:(CGFloat)ratioValue;
+- (void)setControlPointsWithXRatios:(NSArray *)ratios;
 
 @end

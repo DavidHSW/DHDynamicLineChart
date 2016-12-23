@@ -23,8 +23,8 @@
     [super viewDidLoad];
     _controlPoints_xRatio = @[@0,@0.125,@0.25,@0.375];
     _myLineChart = [[DHDynamicLineChart alloc] initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
-                                                yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-                                   controlPointsXRatioValue:_controlPoints_xRatio];
+                                                       yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
+                                            controlPointsByXRatios:_controlPoints_xRatio];
     _myLineChart.translatesAutoresizingMaskIntoConstraints = NO;
     _myLineChart.backgroundColor = [UIColor lightGrayColor];
     _myLineChart.gridLineColor = [UIColor whiteColor];
@@ -53,13 +53,18 @@
 - (IBAction)changeChart:(id)sender {
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     if (seg.selectedSegmentIndex == 0) {
-        [self.myLineChart updateLabelsOfXAxis:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]  YAxis:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]];
-        self.controlPoints_xRatio = @[@0,@0.125,@0.25,@0.375];
-    }else {
-        [self.myLineChart updateLabelsOfXAxis:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"] YAxis:@[@"0",@"5",@"10",@"15",@"20",@"25",@"30",@"35"]];
-        self.controlPoints_xRatio = @[@0,@(1/6),@(2/6),@(3/6)];
+        [self.myLineChart updateWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
+                                    YAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
+                         controlPointsByXRatios:@[@0,@0.125,@0.25,@0.375]];
     }
-    [self.myLineChart setControlPointsWithXRatioValues:self.controlPoints_xRatio];
+    else if (seg.selectedSegmentIndex == 1) {
+        [self.myLineChart updateWithXAxisLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
+                                    YAxisLabels:@[@"0",@"5",@"10",@"15",@"20",@"25",@"30",@"35"]
+                         controlPointsByXRatios:@[@0,@(1.0/7),@(2.0/7),@(3.0/7)]];
+    }
+    else {
+        [self.myLineChart refreshLineChartWithYRatios:@[@0.5,@0.6,@0.7,@0.8]];
+    }
 }
 
 @end
