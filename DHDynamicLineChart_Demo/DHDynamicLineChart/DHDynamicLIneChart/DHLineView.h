@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DHControllPoint.h"
 
 @interface DHLineView : UIView
 
 @property (nonatomic)CGFloat lineWidth;
 @property (nonatomic)UIColor *lineColor;
 
-- (void)drawLineWithControlPoints:(NSArray *)controlPoints;
+- (void)drawLineWithControlPoints:(NSArray<DHControllPoint *> *)controlPoints;
 
 @end

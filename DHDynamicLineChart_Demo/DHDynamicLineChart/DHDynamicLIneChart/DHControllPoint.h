@@ -12,5 +12,8 @@
 
 @property (nonatomic) CGFloat x;
 @property (nonatomic) CGFloat y;
+@property (nonatomic, readonly) CGPoint position;
+
+- (instancetype)initWithX:(CGFloat)x Y:(CGFloat)y;
 
 @end

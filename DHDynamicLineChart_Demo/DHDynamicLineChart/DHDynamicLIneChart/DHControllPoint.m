@@ -9,7 +9,19 @@
 #import "DHControllPoint.h"
 
 @implementation DHControllPoint
-- (void)t {
+
+- (instancetype)initWithX:(CGFloat)x Y:(CGFloat)y {
     
+    if (self = [super init]) {
+        
+        _x = x;
+        _y = y;
+    }
+    
+    return self;
+}
+
+- (CGPoint)position {
+    return CGPointMake(_x, _y);
 }
 @end

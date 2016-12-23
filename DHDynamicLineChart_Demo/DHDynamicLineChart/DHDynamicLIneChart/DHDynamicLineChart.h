@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DHDynamicLineChart : UIView
 
 @property (nonatomic)CGFloat lineWidth;
@@ -15,20 +17,25 @@
 @property (nonatomic)CGFloat gridLineWidth;
 @property (nonatomic)UIColor *gridLineColor;
 
-- (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)xRatios;
+- (instancetype)initWithXAxisLabels:(NSArray<NSString *> *)xLabels
+                        yAxisLabels:(NSArray<NSString *> *)yLabels
+             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios;
+
+- (void)resetLine;
 
 - (void)refresh;
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index;
 
-- (void)refreshLineChartWithYRatios:(NSArray *)yRatios;
+- (void)refreshLineChartWithYRatios:(NSArray<NSNumber *> *)yRatios;
 
-- (void)updateWithXAxisLabels:(NSArray *)xLabels
-                  YAxisLabels:(NSArray *)yLabels
-       controlPointsByXRatios:(NSArray *)ratios
-          immediatellyRefresh:(BOOL)refresh;
+- (void)updateWithXAxisLabels:(NSArray<NSString *> *)xLabels
+                  YAxisLabels:(NSArray<NSString *> *)yLabels
+       controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+          immediatelyRefresh:(BOOL)refresh;
 
-- (void)setControlPointsWithXRatios:(NSArray *)ratios;
+- (void)setControlPointsWithXRatios:(NSArray<NSNumber *> *)xRatios;
 
-- (void)resetLine;
 @end
+
+NS_ASSUME_NONNULL_END

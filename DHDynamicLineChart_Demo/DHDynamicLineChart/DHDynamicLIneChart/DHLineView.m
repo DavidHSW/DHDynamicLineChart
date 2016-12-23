@@ -10,7 +10,7 @@
 
 @interface DHLineView()
 {
-    NSArray *_controlPoints;
+    NSArray<DHControllPoint *> *_controlPoints;
 }
 @end
 
@@ -50,18 +50,15 @@
     CGContextSetLineWidth(context, _lineWidth);
     CGContextSetStrokeColorWithColor(context, _lineColor.CGColor);
     for (int i = 0; i < _controlPoints.count - 1; i++) {
-        CGPoint fromPoint;
-        CGPoint toPoint;
-        [(NSValue *)_controlPoints[i] getValue:&fromPoint];
-        [(NSValue *)_controlPoints[i+1] getValue:&toPoint];
+        CGPoint fromPoint = _controlPoints[i].position;
+        CGPoint toPoint = _controlPoints[i + 1].position;
         CGContextMoveToPoint(context, fromPoint.x, fromPoint.y);
         CGContextAddLineToPoint(context, toPoint.x, toPoint.y);
         CGContextStrokePath(context);
     }
 }
 
--(void)drawLineWithControlPoints:(NSArray *)controlPoints
-{
+- (void)drawLineWithControlPoints:(NSArray<DHControllPoint *> *)controlPoints {
     _controlPoints = controlPoints;
     [self setNeedsDisplay];
 }

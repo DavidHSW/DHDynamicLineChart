@@ -56,16 +56,19 @@
         [self.myLineChart updateWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                     YAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
                          controlPointsByXRatios:@[@0,@0.125,@0.25,@0.375]
-                            immediatellyRefresh:YES];
+                            immediatelyRefresh:YES];
     }
     else if (seg.selectedSegmentIndex == 1) {
         [self.myLineChart updateWithXAxisLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
                                     YAxisLabels:@[@"0",@"5",@"10",@"15",@"20",@"25",@"30",@"35"]
                          controlPointsByXRatios:@[@0,@(1.0/7),@(2.0/7),@(3.0/7)]
-                            immediatellyRefresh:YES];
+                            immediatelyRefresh:YES];
+    }
+    else if (seg.selectedSegmentIndex == 2) {
+        [self.myLineChart refreshLineChartWithYRatios:@[@0.5,@0.6,@0.7,@0.8]];
     }
     else {
-        [self.myLineChart refreshLineChartWithYRatios:@[@0.5,@0.6,@0.7,@0.8]];
+        [self.myLineChart resetLine];
     }
 }
 
