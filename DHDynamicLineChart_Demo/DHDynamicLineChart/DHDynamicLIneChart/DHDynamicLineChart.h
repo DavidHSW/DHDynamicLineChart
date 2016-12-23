@@ -15,16 +15,20 @@
 @property (nonatomic)CGFloat gridLineWidth;
 @property (nonatomic)UIColor *gridLineColor;
 
-@property (nonatomic)CGFloat yMax;
-
 - (instancetype)initWithXAxisLabels:(NSArray *)xLabels yAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)xRatios;
+
+- (void)refresh;
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index;
 
 - (void)refreshLineChartWithYRatios:(NSArray *)yRatios;
 
-- (void)updateWithXAxisLabels:(NSArray *)xLabels YAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)ratios;
+- (void)updateWithXAxisLabels:(NSArray *)xLabels
+                  YAxisLabels:(NSArray *)yLabels
+       controlPointsByXRatios:(NSArray *)ratios
+          immediatellyRefresh:(BOOL)refresh;
 
 - (void)setControlPointsWithXRatios:(NSArray *)ratios;
 
+- (void)resetLine;
 @end

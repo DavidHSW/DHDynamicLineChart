@@ -17,6 +17,7 @@
 		686F8A5E1C0C400F00F4B1CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F8A5D1C0C400F00F4B1CE /* CoreGraphics.framework */; };
 		686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */; };
 		686F8A711C10217700F4B1CE /* DHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6F1C10217700F4B1CE /* DHLineView.m */; };
+		A210BEC01E0D304700BB3B7B /* DHControllPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChart.m; sourceTree = "<group>"; };
 		686F8A6E1C10217700F4B1CE /* DHLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLineView.h; sourceTree = "<group>"; };
 		686F8A6F1C10217700F4B1CE /* DHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLineView.m; sourceTree = "<group>"; };
+		A210BEBE1E0D304700BB3B7B /* DHControllPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHControllPoint.h; sourceTree = "<group>"; };
+		A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHControllPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */,
 				686F8A6E1C10217700F4B1CE /* DHLineView.h */,
 				686F8A6F1C10217700F4B1CE /* DHLineView.m */,
+				A210BEBE1E0D304700BB3B7B /* DHControllPoint.h */,
+				A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */,
 			);
 			path = DHDynamicLIneChart;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				686F8A3D1C0C3EDA00F4B1CE /* ViewController.m in Sources */,
 				686F8A3A1C0C3EDA00F4B1CE /* AppDelegate.m in Sources */,
 				686F8A711C10217700F4B1CE /* DHLineView.m in Sources */,
+				A210BEC01E0D304700BB3B7B /* DHControllPoint.m in Sources */,
 				686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */,
 				686F8A371C0C3EDA00F4B1CE /* main.m in Sources */,
 			);

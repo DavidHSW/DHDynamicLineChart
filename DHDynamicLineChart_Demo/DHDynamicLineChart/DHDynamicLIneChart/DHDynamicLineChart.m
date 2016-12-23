@@ -18,7 +18,7 @@
     CGPoint _rightBottomOriginalPosition;
     CGFloat _yAxisStartPosition;
     
-    NSMutableArray *_controlPoints;
+    NSMutableArray<NSValue *> *_controlPoints;
     NSArray *_xRatios;
     
     NSArray *_labelSource_x;
@@ -143,13 +143,15 @@
 #pragma mark - API
 
 - (void)setLineColor:(UIColor *)lineColor {
-    
     _lineView.lineColor = lineColor;
 }
 
 - (void)setLineWidth:(CGFloat)lineWidth {
-    
     _lineView.lineWidth = lineWidth;
+}
+
+- (void)refresh {
+    [self setNeedsDisplay];
 }
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index {
@@ -161,7 +163,7 @@
     }
     
     CGPoint point;
-    [(NSValue *)_controlPoints[index] getValue:&point];
+    [_controlPoints[index] getValue:&point];
     point.y = _yAxisStartPosition - (_yAxisStartPosition - _leftTopOriginalPosition.y) * yRatio;
     _controlPoints[index] = [NSValue valueWithCGPoint:point];
     
@@ -177,13 +179,15 @@
     }
 }
 
-- (void)updateWithXAxisLabels:(NSArray *)xLabels YAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)ratios {
+- (void)updateWithXAxisLabels:(NSArray *)xLabels YAxisLabels:(NSArray *)yLabels controlPointsByXRatios:(NSArray *)ratios immediatellyRefresh:(BOOL)refresh {
 
     _labelSource_x = xLabels;
     _labelSource_y = yLabels;
     [self setControlPointsWithXRatios:ratios];
     
-    [self setNeedsDisplay];
+    if (refresh) {
+        [self setNeedsDisplay];
+    }
 }
 
 - (void)setControlPointsWithXRatios:(NSArray *)ratios {
@@ -209,4 +213,7 @@
     }
 }
 
+- (void)resetLine {
+    
+}
 @end
