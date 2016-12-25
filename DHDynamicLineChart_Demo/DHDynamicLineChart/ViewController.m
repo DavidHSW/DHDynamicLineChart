@@ -24,7 +24,8 @@
     _controlPoints_xRatio = @[@0,@0.125,@0.25,@0.375];
     _myLineChart = [[DHDynamicLineChart alloc] initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                                        yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-                                            controlPointsByXRatios:_controlPoints_xRatio];
+                                            controlPointsByXRatios:_controlPoints_xRatio
+                                                          direction:DHDyanmicChartDirectionDown];
     _myLineChart.translatesAutoresizingMaskIntoConstraints = NO;
     _myLineChart.backgroundColor = [UIColor lightGrayColor];
     _myLineChart.gridLineColor = [UIColor whiteColor];
@@ -33,7 +34,7 @@
     _myLineChart.lineWidth = 1.0f;
     [self.view addSubview:_myLineChart];
 
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_myLineChart(300)]"
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_myLineChart(400)]"
                                                                                     options:0
                                                                                     metrics:nil
                                                                                       views:NSDictionaryOfVariableBindings(_myLineChart)]];

@@ -10,6 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, DHDyanmicChartDirection) {
+    DHDyanmicChartDirectionUp = 0,
+    DHDyanmicChartDirectionDown
+};
+
 @interface DHDynamicLineChart : UIView
 
 @property (nonatomic)CGFloat lineWidth;
@@ -19,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithXAxisLabels:(NSArray<NSString *> *)xLabels
                         yAxisLabels:(NSArray<NSString *> *)yLabels
-             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios;
+             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+                           direction:(DHDyanmicChartDirection)direction;
 
 - (void)resetLine;
 

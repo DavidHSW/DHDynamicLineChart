@@ -10,6 +10,18 @@
 #import "DHLineView.h"
 #import "DHControllPoint.h"
 
+//Space between edge and side where y axis increase.
+static CGFloat FacingSpace   = 20;
+
+//Space between edge and side where x axis decrease.
+static CGFloat LeadingSpace  = 100;
+
+//Space between edge and side where y axis decrease.
+static CGFloat BackingSpace  = 60;
+
+//Space between edge and side where x axis increase.
+static CGFloat TrailingSpace = 50;
+
 @interface DHDynamicLineChart()
 {
     NSInteger _xGridLineInterval;
@@ -18,7 +30,8 @@
     CGPoint _leftTopOriginalPosition;
     CGPoint _rightBottomOriginalPosition;
     CGFloat _yAxisStartPosition;
-    
+    CGFloat _yAxisEndPosition;
+
     NSMutableArray<DHControllPoint *> *_controlPoints;
     NSArray<NSNumber *> *_xRatios;
     
@@ -26,9 +39,10 @@
     NSArray<NSString *> *_labelSource_y;
     
     DHLineView *_lineView;
+    
+    BOOL _isUp;
 }
 @end
-
 
 @implementation DHDynamicLineChart
 
@@ -37,19 +51,22 @@
     //Default labels and control positions
     return [self initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                          yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-              controlPointsByXRatios:@[@0.125,@0.25,@0.375,@0.5]];
+              controlPointsByXRatios:@[@0.125,@0.25,@0.375,@0.5]
+                            direction:DHDyanmicChartDirectionUp];
 }
 
 //Designated initializer.
 - (instancetype)initWithXAxisLabels:(NSArray<NSString *> *)xLabels
                         yAxisLabels:(NSArray<NSString *> *)yLabels
-             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios {
+             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+                           direction:(DHDyanmicChartDirection)direction {
 
     if (self = [super init]) {
         
         _labelSource_x = xLabels;
         _labelSource_y = yLabels;
         _xRatios = xRatios;
+        _isUp = direction == DHDyanmicChartDirectionUp;
         _controlPoints = [[NSMutableArray alloc] init];
         
         _lineView = [[DHLineView alloc] init];
@@ -78,22 +95,45 @@
                           yAxisLabels:(NSArray<NSString *> *)yLabels
                                inRect:(CGRect)rect{
 
-    _leftTopOriginalPosition = CGPointMake(rect.size.width / 10, rect.size.width / 15);
-    _rightBottomOriginalPosition = CGPointMake(rect.size.width - rect.size.width / 20, rect.size.height - rect.size.height / 20);
+    CGFloat topSpace = _isUp ? FacingSpace : BackingSpace;
+    CGFloat leftSpace = LeadingSpace;
+    CGFloat buttomSpace = _isUp ? BackingSpace : FacingSpace;
+    CGFloat rightSpace = TrailingSpace;
+    CGFloat xLabelYPosition;
+    CGFloat xLabelHeight;
+    CGFloat yLabelYScalor;
+    
+    _leftTopOriginalPosition = CGPointMake(leftSpace, topSpace);
+    _rightBottomOriginalPosition = CGPointMake(rect.size.width - rightSpace, rect.size.height - buttomSpace);
+    
+    _xGridLineInterval = fabs(_rightBottomOriginalPosition.x - _leftTopOriginalPosition.x) / _labelSource_x.count;
+    _yGridLineInterval = fabs(_rightBottomOriginalPosition.y - _leftTopOriginalPosition.y) / _labelSource_y.count;
 
-    _xGridLineInterval = (_rightBottomOriginalPosition.x - _leftTopOriginalPosition.x) / _labelSource_x.count;
-    _yGridLineInterval = (_rightBottomOriginalPosition.y - _leftTopOriginalPosition.y) / _labelSource_y.count;
 
-    _yAxisStartPosition = _yGridLineInterval * (_labelSource_y.count - 1) + _leftTopOriginalPosition.y;
+    if (_isUp) {
+        _yAxisStartPosition = rect.size.height - buttomSpace;
+        _yAxisEndPosition = _yAxisStartPosition - _yGridLineInterval * (_labelSource_y.count - 1);
+        xLabelYPosition = buttomSpace / 4 + _rightBottomOriginalPosition.y;
+        xLabelHeight = buttomSpace / 2;
+        yLabelYScalor = -1;
+    }else {
+        _yAxisStartPosition = _yGridLineInterval * (_labelSource_y.count - 1) + topSpace;
+        _yAxisEndPosition = _leftTopOriginalPosition.y;
+        xLabelYPosition = topSpace / 4;
+        xLabelHeight = topSpace / 2;
+        yLabelYScalor = 1;
+    }
     
     //add labels for x axis
     for (int i = 0; i < _labelSource_x.count; i++) {
-        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x - _xGridLineInterval / 3 + i * _xGridLineInterval, _leftTopOriginalPosition.y / 4, _xGridLineInterval * 2 / 3, _leftTopOriginalPosition.y / 2) Text:_labelSource_x[i]];
+        
+        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x - _xGridLineInterval / 3 + i * _xGridLineInterval, xLabelYPosition, _xGridLineInterval * 2 / 3, xLabelHeight) Text:_labelSource_x[i]];
     }
 
     //add labels for y axis
     for (int i = 0; i < _labelSource_y.count; i++) {
-        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x / 4, _leftTopOriginalPosition.y - _yGridLineInterval / 3 + i * _yGridLineInterval, _leftTopOriginalPosition.x / 2, _yGridLineInterval * 2 / 3) Text:_labelSource_y[i]];
+        
+        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x / 4, (_isUp ? _yAxisStartPosition : _yAxisEndPosition) - _yGridLineInterval / 3 + yLabelYScalor * i * _yGridLineInterval, leftSpace / 2, _yGridLineInterval * 2 / 3) Text:_labelSource_y[i]];
     }
 }
 
@@ -128,10 +168,11 @@
         CGContextAddLineToPoint(context, _leftTopOriginalPosition.x + i * _xGridLineInterval, _rightBottomOriginalPosition.y);
         CGContextStrokePath(context);
     }
+    
     //draw y grid lines
     for (int i = 0; i < _labelSource_y.count; i++) {
-        CGContextMoveToPoint(context, _leftTopOriginalPosition.x, _leftTopOriginalPosition.y + i * _yGridLineInterval);
-        CGContextAddLineToPoint(context, _rightBottomOriginalPosition.x, _leftTopOriginalPosition.y + i * _yGridLineInterval);
+        CGContextMoveToPoint(context, _leftTopOriginalPosition.x, _yAxisStartPosition - i * _yGridLineInterval);
+        CGContextAddLineToPoint(context, _rightBottomOriginalPosition.x, _yAxisStartPosition - i * _yGridLineInterval);
         CGContextStrokePath(context);
     }
 }
@@ -177,7 +218,6 @@
     for (DHControllPoint *point in _controlPoints) {
         point.y = _yAxisStartPosition;
     }
-    
     [_lineView drawLineWithControlPoints:_controlPoints];
 }
 
@@ -189,16 +229,13 @@
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index {
     
     yRatio = [self validateValue:yRatio from:0.0 to:1.0];
-    
-    _controlPoints[index].y = _yAxisStartPosition - (_yAxisStartPosition - _leftTopOriginalPosition.y) * yRatio;
-    
+    _controlPoints[index].y = _yAxisStartPosition - ((_labelSource_y.count - 1) * _yGridLineInterval) * yRatio;
     [_lineView drawLineWithControlPoints:_controlPoints];
 }
 
 - (void)refreshLineChartWithYRatios:(NSArray<NSNumber *> *)yRatios {
 
     NSUInteger loopCount = MIN(yRatios.count, _controlPoints.count);
-    
     for (int i = 0; i < loopCount; i++) {
         [self refreshLineChartWithYRatio:((NSNumber *)yRatios[i]).floatValue atIndex:i];
     }
