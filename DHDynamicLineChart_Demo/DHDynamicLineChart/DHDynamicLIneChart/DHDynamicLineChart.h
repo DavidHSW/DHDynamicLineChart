@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)resetLine;
 
-- (void)refresh;
+- (void)refreshChart;
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index;
 

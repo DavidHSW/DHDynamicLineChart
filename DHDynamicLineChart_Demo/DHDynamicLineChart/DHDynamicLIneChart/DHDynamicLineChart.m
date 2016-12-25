@@ -56,7 +56,7 @@
         _lineView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_lineView];
         
-        //Default setting.
+        //Default settings.
         self.backgroundColor = [UIColor blackColor];
         _lineWidth = 1.0f;
         _gridLineWidth = 1.0f;
@@ -71,7 +71,7 @@
     [self removeAllLabels];
     [self configureChartWithXAxisLabels:_labelSource_x yAxisLabels:_labelSource_y inRect:rect];
     [self setControlPointsWithXRatios:_xRatios];
-    [self drawGridLinesWithRect:rect];
+    [self drawGridLinesInRect:rect];
 }
 
 - (void)configureChartWithXAxisLabels:(NSArray<NSString *> *)xLabels
@@ -88,23 +88,23 @@
     
     //add labels for x axis
     for (int i = 0; i < _labelSource_x.count; i++) {
-        [self addLabelInRect:CGRectMake(_leftTopOriginalPosition.x - _xGridLineInterval / 3 + i * _xGridLineInterval, _leftTopOriginalPosition.y / 4, _xGridLineInterval * 2 / 3, _leftTopOriginalPosition.y / 2) Text:_labelSource_x[i]];
+        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x - _xGridLineInterval / 3 + i * _xGridLineInterval, _leftTopOriginalPosition.y / 4, _xGridLineInterval * 2 / 3, _leftTopOriginalPosition.y / 2) Text:_labelSource_x[i]];
     }
 
     //add labels for y axis
     for (int i = 0; i < _labelSource_y.count; i++) {
-        [self addLabelInRect:CGRectMake(_leftTopOriginalPosition.x / 4, _leftTopOriginalPosition.y - _yGridLineInterval / 3 + i * _yGridLineInterval, _leftTopOriginalPosition.x / 2, _yGridLineInterval * 2 / 3) Text:_labelSource_y[i]];
+        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x / 4, _leftTopOriginalPosition.y - _yGridLineInterval / 3 + i * _yGridLineInterval, _leftTopOriginalPosition.x / 2, _yGridLineInterval * 2 / 3) Text:_labelSource_y[i]];
     }
 }
 
-- (void)addLabelInRect:(CGRect)rect Text:(NSString *)labelText {
+- (void)addLabelWithFrame:(CGRect)frame Text:(NSString *)labelText {
     
-    UILabel *label = [[UILabel alloc] initWithFrame:rect];
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.text = labelText;
 
     NSInteger largestSize = 20;
     CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:largestSize]}];
-    while (size.width > rect.size.width * 4 / 5 || size.height > rect.size.height * 4 / 5) {
+    while (size.width > frame.size.width * 4 / 5 || size.height > frame.size.height * 4 / 5) {
         largestSize--;
         size = [label.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:largestSize]}];
     }
@@ -115,7 +115,7 @@
     [self addSubview:label];
 }
 
-- (void)drawGridLinesWithRect:(CGRect)rect {
+- (void)drawGridLinesInRect:(CGRect)rect {
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -146,6 +146,22 @@
     }
 }
 
+- (CGFloat)validateValue:(CGFloat)value from:(CGFloat)fromValue to:(CGFloat)toValue {
+    
+    fromValue = MIN(fromValue, toValue);
+    toValue = MAX(fromValue, toValue);
+    
+    if (value < fromValue) {
+        return fromValue;
+    }
+    else if (value > toValue){
+        return toValue;
+    }
+    else {
+        return value;
+    }
+}
+
 #pragma mark - API
 
 - (void)setLineColor:(UIColor *)lineColor {
@@ -165,18 +181,14 @@
     [_lineView drawLineWithControlPoints:_controlPoints];
 }
 
-- (void)refresh {
+- (void)refreshChart {
     [self setNeedsDisplay];
+    [self resetLine];
 }
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index {
     
-    if (yRatio > 1) {
-        yRatio = 1;
-    }
-    else if(yRatio < 0){
-        yRatio = 0;
-    }
+    yRatio = [self validateValue:yRatio from:0.0 to:1.0];
     
     _controlPoints[index].y = _yAxisStartPosition - (_yAxisStartPosition - _leftTopOriginalPosition.y) * yRatio;
     
@@ -202,7 +214,7 @@
     _xRatios = xRatios;
     
     if (refresh) {
-        [self setNeedsDisplay];
+        [self refreshChart];
     }
 }
 
@@ -216,13 +228,7 @@
     [xRatios sortedArrayUsingSelector:@selector(compare:)];
     for(NSNumber *xRatioNum in xRatios)
     {
-        CGFloat xRatio = xRatioNum.floatValue;
-        if (xRatio > 1) {
-            xRatio = 1.0;
-        }
-        else if(xRatio < 0) {
-            xRatio = 0.0;
-        }
+        CGFloat xRatio = [self validateValue:xRatioNum.floatValue from:0.0 to:1.0];
         CGFloat newPosition = xRatio * chartWidth + _leftTopOriginalPosition.x;
         [_controlPoints addObject:[[DHControllPoint alloc] initWithX:newPosition Y:_yAxisStartPosition]];
     }

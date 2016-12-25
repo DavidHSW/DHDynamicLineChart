@@ -60,7 +60,7 @@
     }
     else if (seg.selectedSegmentIndex == 1) {
         [self.myLineChart updateWithXAxisLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
-                                    YAxisLabels:@[@"0",@"5",@"10",@"15",@"20",@"25",@"30",@"35"]
+                                    YAxisLabels:@[@"0",@"5",@"10",@"15",@"20",@"25"]
                          controlPointsByXRatios:@[@0,@(1.0/7),@(2.0/7),@(3.0/7)]
                             immediatelyRefresh:YES];
     }
