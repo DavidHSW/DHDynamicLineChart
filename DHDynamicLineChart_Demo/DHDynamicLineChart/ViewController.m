@@ -31,7 +31,7 @@
     _myLineChart.gridLineColor = [UIColor whiteColor];
     _myLineChart.gridLineWidth = 1.0f;
     _myLineChart.lineColor = [UIColor whiteColor];
-    _myLineChart.lineWidth = 1.5f;
+    _myLineChart.lineWidth = 3.0f;
     [self.view addSubview:_myLineChart];
 
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_myLineChart(400)]"

@@ -18,6 +18,7 @@
 		686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */; };
 		686F8A711C10217700F4B1CE /* DHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6F1C10217700F4B1CE /* DHLineView.m */; };
 		A210BEC01E0D304700BB3B7B /* DHControllPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */; };
+		A210BEE41E124CD600BB3B7B /* DHGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A210BEE31E124CD600BB3B7B /* DHGridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		686F8A6F1C10217700F4B1CE /* DHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLineView.m; sourceTree = "<group>"; };
 		A210BEBE1E0D304700BB3B7B /* DHControllPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHControllPoint.h; sourceTree = "<group>"; };
 		A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHControllPoint.m; sourceTree = "<group>"; };
+		A210BEE21E124CD600BB3B7B /* DHGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGridView.h; sourceTree = "<group>"; };
+		A210BEE31E124CD600BB3B7B /* DHGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGridView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 			children = (
 				686F8A6C1C10217700F4B1CE /* DHDynamicLineChart.h */,
 				686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */,
+				A210BEE21E124CD600BB3B7B /* DHGridView.h */,
+				A210BEE31E124CD600BB3B7B /* DHGridView.m */,
 				686F8A6E1C10217700F4B1CE /* DHLineView.h */,
 				686F8A6F1C10217700F4B1CE /* DHLineView.m */,
 				A210BEBE1E0D304700BB3B7B /* DHControllPoint.h */,
@@ -246,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A210BEE41E124CD600BB3B7B /* DHGridView.m in Sources */,
 				686F8A3D1C0C3EDA00F4B1CE /* ViewController.m in Sources */,
 				686F8A3A1C0C3EDA00F4B1CE /* AppDelegate.m in Sources */,
 				686F8A711C10217700F4B1CE /* DHLineView.m in Sources */,
