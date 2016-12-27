@@ -27,11 +27,11 @@
                                             controlPointsByXRatios:_controlPoints_xRatio
                                                           direction:DHDyanmicChartDirectionDown];
     _myLineChart.translatesAutoresizingMaskIntoConstraints = NO;
-    _myLineChart.backgroundColor = [UIColor lightGrayColor];
+    _myLineChart.backgroundColor = [UIColor colorWithRed:15.0/255.0 green:115.0/255.0 blue:1 alpha:1];
     _myLineChart.gridLineColor = [UIColor whiteColor];
     _myLineChart.gridLineWidth = 1.0f;
-    _myLineChart.lineColor = [UIColor redColor];
-    _myLineChart.lineWidth = 1.0f;
+    _myLineChart.lineColor = [UIColor whiteColor];
+    _myLineChart.lineWidth = 1.5f;
     [self.view addSubview:_myLineChart];
 
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_myLineChart(400)]"

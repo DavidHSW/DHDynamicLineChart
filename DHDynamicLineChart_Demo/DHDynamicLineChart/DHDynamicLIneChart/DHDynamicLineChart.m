@@ -22,6 +22,9 @@ static CGFloat BackingSpace  = 60;
 //Space between edge and side where x axis increase.
 static CGFloat TrailingSpace = 50;
 
+static CGFloat XLabelHeight = 30;
+static CGFloat YLabelWidth = 50;
+
 @interface DHDynamicLineChart()
 {
     NSInteger _xGridLineInterval;
@@ -100,7 +103,6 @@ static CGFloat TrailingSpace = 50;
     CGFloat buttomSpace = _isUp ? BackingSpace : FacingSpace;
     CGFloat rightSpace = TrailingSpace;
     CGFloat xLabelYPosition;
-    CGFloat xLabelHeight;
     CGFloat yLabelYScalor;
     
     _leftTopOriginalPosition = CGPointMake(leftSpace, topSpace);
@@ -112,28 +114,25 @@ static CGFloat TrailingSpace = 50;
 
     if (_isUp) {
         _yAxisStartPosition = rect.size.height - buttomSpace;
-        _yAxisEndPosition = _yAxisStartPosition - _yGridLineInterval * (_labelSource_y.count - 1);
         xLabelYPosition = buttomSpace / 4 + _rightBottomOriginalPosition.y;
-        xLabelHeight = buttomSpace / 2;
         yLabelYScalor = -1;
     }else {
         _yAxisStartPosition = _yGridLineInterval * (_labelSource_y.count - 1) + topSpace;
-        _yAxisEndPosition = _leftTopOriginalPosition.y;
         xLabelYPosition = topSpace / 4;
-        xLabelHeight = topSpace / 2;
         yLabelYScalor = 1;
     }
-    
+    _yAxisEndPosition = _yAxisStartPosition - _yGridLineInterval * (_labelSource_y.count - 1);
+
     //add labels for x axis
     for (int i = 0; i < _labelSource_x.count; i++) {
         
-        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x - _xGridLineInterval / 3 + i * _xGridLineInterval, xLabelYPosition, _xGridLineInterval * 2 / 3, xLabelHeight) Text:_labelSource_x[i]];
+        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x - _xGridLineInterval / 3 + i * _xGridLineInterval, xLabelYPosition, _xGridLineInterval * 2 / 3, XLabelHeight) Text:_labelSource_x[i]];
     }
 
     //add labels for y axis
     for (int i = 0; i < _labelSource_y.count; i++) {
         
-        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x / 4, (_isUp ? _yAxisStartPosition : _yAxisEndPosition) - _yGridLineInterval / 3 + yLabelYScalor * i * _yGridLineInterval, leftSpace / 2, _yGridLineInterval * 2 / 3) Text:_labelSource_y[i]];
+        [self addLabelWithFrame:CGRectMake(_leftTopOriginalPosition.x / 4, (_isUp ? _yAxisStartPosition : _yAxisEndPosition) - _yGridLineInterval / 3 + yLabelYScalor * i * _yGridLineInterval, YLabelWidth, _yGridLineInterval * 2 / 3) Text:_labelSource_y[i]];
     }
 }
 
@@ -141,15 +140,7 @@ static CGFloat TrailingSpace = 50;
     
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.text = labelText;
-
-    NSInteger largestSize = 20;
-    CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:largestSize]}];
-    while (size.width > frame.size.width * 4 / 5 || size.height > frame.size.height * 4 / 5) {
-        largestSize--;
-        size = [label.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:largestSize]}];
-    }
-    label.font = [UIFont systemFontOfSize:largestSize];
-
+    label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     [self addSubview:label];
