@@ -10,12 +10,12 @@
 
 @implementation DHControllPoint
 
-- (instancetype)initWithX:(CGFloat)x Y:(CGFloat)y {
-    
+- (instancetype)initWithPoint:(CGPoint)point {
+
     if (self = [super init]) {
         
-        _x = x;
-        _y = y;
+        _x = point.x;
+        _y = point.y;
     }
     
     return self;

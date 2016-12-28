@@ -20,6 +20,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        self.contentMode = UIViewContentModeRedraw;
         _lineWidth = 1.0;
         _lineColor = [UIColor redColor];
     }

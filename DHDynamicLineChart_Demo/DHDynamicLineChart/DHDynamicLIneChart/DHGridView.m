@@ -61,6 +61,10 @@
         CGContextAddLineToPoint(context, width, i * yGridLineInterval + _chartOffset);
         CGContextStrokePath(context);
     }
+    
+    if ([_delegate respondsToSelector:@selector(didRedrawedGridView:)]) {
+        [_delegate didRedrawedGridView:self];
+    }
 }
 
 - (void)refreshWithXLineNum:(NSUInteger)xLineNum YLineNum:(NSUInteger)yLineNum {

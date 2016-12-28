@@ -19,13 +19,13 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {    
+- (void)viewDidLoad {
     [super viewDidLoad];
     _controlPoints_xRatio = @[@0,@0.125,@0.25,@0.375];
-    _myLineChart = [[DHDynamicLineChart alloc] initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
-                                                       yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-                                            controlPointsByXRatios:_controlPoints_xRatio
-                                                          direction:DHDyanmicChartDirectionDown];
+    _myLineChart = [[DHDynamicLineChart alloc] initWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
+                                                       yAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
+                                                 controlPointsByXRatios:_controlPoints_xRatio
+                                                              direction:DHDyanmicChartDirectionUp];
     _myLineChart.translatesAutoresizingMaskIntoConstraints = NO;
     _myLineChart.backgroundColor = [UIColor colorWithRed:15.0/255.0 green:115.0/255.0 blue:1 alpha:1];
     _myLineChart.gridLineColor = [UIColor whiteColor];
@@ -54,16 +54,14 @@
 - (IBAction)changeChart:(id)sender {
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     if (seg.selectedSegmentIndex == 0) {
-        [self.myLineChart updateWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
-                                    YAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-                         controlPointsByXRatios:@[@0,@0.125,@0.25,@0.375]
-                            immediatelyRefresh:YES];
+        [self.myLineChart updateWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
+                                    YAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
+                              controlPointsByXRatios:@[@0,@0.125,@0.25,@0.375]];
     }
     else if (seg.selectedSegmentIndex == 1) {
-        [self.myLineChart updateWithXAxisLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
-                                    YAxisLabels:@[@"0",@"5",@"10",@"15",@"20",@"25"]
-                         controlPointsByXRatios:@[@0,@(1.0/7),@(2.0/7),@(3.0/7)]
-                            immediatelyRefresh:YES];
+        [self.myLineChart updateWithXAxisLabelTitles:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
+                                    YAxisLabelTitles:@[@"0",@"5",@"10",@"15",@"20",@"25"]
+                              controlPointsByXRatios:@[@0,@(1.0/7),@(2.0/7),@(3.0/7)]];
     }
     else if (seg.selectedSegmentIndex == 2) {
         [self.myLineChart refreshLineChartWithYRatios:@[@0.5,@0.6,@0.7,@0.8]];

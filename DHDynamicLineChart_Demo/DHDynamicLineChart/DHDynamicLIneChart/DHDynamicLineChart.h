@@ -22,10 +22,10 @@ typedef NS_ENUM(NSInteger, DHDyanmicChartDirection) {
 @property (nonatomic)CGFloat gridLineWidth;
 @property (nonatomic)UIColor *gridLineColor;
 
-- (instancetype)initWithXAxisLabels:(NSArray<NSString *> *)xLabels
-                        yAxisLabels:(NSArray<NSString *> *)yLabels
-             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
-                           direction:(DHDyanmicChartDirection)direction;
+- (instancetype)initWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
+                        yAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
+                  controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+                               direction:(DHDyanmicChartDirection)direction;
 
 - (void)resetLine;
 
@@ -35,10 +35,9 @@ typedef NS_ENUM(NSInteger, DHDyanmicChartDirection) {
 
 - (void)refreshLineChartWithYRatios:(NSArray<NSNumber *> *)yRatios;
 
-- (void)updateWithXAxisLabels:(NSArray<NSString *> *)xLabels
-                  YAxisLabels:(NSArray<NSString *> *)yLabels
-       controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
-          immediatelyRefresh:(BOOL)refresh;
+- (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
+                  YAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
+            controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios;
 
 - (void)setControlPointsWithXRatios:(NSArray<NSNumber *> *)xRatios;
 

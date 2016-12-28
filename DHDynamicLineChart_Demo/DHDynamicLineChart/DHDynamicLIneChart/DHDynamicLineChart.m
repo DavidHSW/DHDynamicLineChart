@@ -11,21 +11,17 @@
 #import "DHControllPoint.h"
 #import "DHGridView.h"
 
-@interface DHDynamicLineChart()
+@interface DHDynamicLineChart()<DHGridViewDelegate>
 {
     NSInteger _xGridLineInterval;
     NSInteger _yGridLineInterval;
-    
-    CGPoint _leftTopOriginalPosition;
-    CGPoint _rightBottomOriginalPosition;
     CGFloat _yAxisStartPosition;
-    CGFloat _yAxisEndPosition;
 
     NSMutableArray<DHControllPoint *> *_controlPoints;
-    NSArray<NSNumber *> *_xRatios;
+    NSArray<NSNumber *> *_controlPositionRatios;
     
-    NSArray<NSString *> *_labelSource_x;
-    NSArray<NSString *> *_labelSource_y;
+    NSArray<NSString *> *_xLabelTitles;
+    NSArray<NSString *> *_yLabelTitles;
     
     DHLineView *_lineView;
     DHGridView *_gridView;
@@ -40,28 +36,29 @@
 - (instancetype)init {
     
     //Default labels and control positions
-    return [self initWithXAxisLabels:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
-                         yAxisLabels:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-              controlPointsByXRatios:@[@0.125,@0.25,@0.375,@0.5]
-                            direction:DHDyanmicChartDirectionUp];
+    return [self initWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
+                         yAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
+                   controlPointsByXRatios:@[@0.125,@0.25,@0.375,@0.5]
+                                direction:DHDyanmicChartDirectionUp];
 }
 
 //Designated initializer.
-- (instancetype)initWithXAxisLabels:(NSArray<NSString *> *)xLabels
-                        yAxisLabels:(NSArray<NSString *> *)yLabels
-             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
-                           direction:(DHDyanmicChartDirection)direction {
+- (instancetype)initWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
+                        yAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
+                  controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+                               direction:(DHDyanmicChartDirection)direction {
 
     if (self = [super init]) {
         
-        _labelSource_x = xLabels;
-        _labelSource_y = yLabels;
-        _xRatios = xRatios;
+        _xLabelTitles = xLabelTitles;
+        _yLabelTitles = yLabelTitles;
+        _controlPositionRatios = xRatios;
         _isUp = direction == DHDyanmicChartDirectionUp;
         _controlPoints = [[NSMutableArray alloc] init];
         
         _gridView = [[DHGridView alloc] initWithDirectionUp:_isUp];
         _gridView.translatesAutoresizingMaskIntoConstraints = NO;
+        _gridView.delegate = self;
         [self addSubview:_gridView];
         
         _lineView = [[DHLineView alloc] init];
@@ -76,17 +73,15 @@
         _yLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_yLabelContainer];
         
-        NSString *yLabelContainerVisualFormat = _isUp ? @"V:|-10-[_gridView]-10-[_xLabelContainer]-10-|" : @"V:|-10-[_xLabelContainer]-10-[_gridView]-10-|";
-
+        NSString *yLabelContainerVisualFormat = _isUp ? @"V:|-10-[_gridView]-15-[_xLabelContainer]-15-|" : @"V:|-15-[_xLabelContainer]-15-[_gridView]-10-|";
         [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:yLabelContainerVisualFormat
                                                                                         options:NSLayoutFormatAlignAllLeading | NSLayoutFormatAlignAllTrailing
                                                                                         metrics:nil
                                                                                           views:NSDictionaryOfVariableBindings(_gridView, _xLabelContainer)]];
-        [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_yLabelContainer]-10-[_gridView]-10-|"
+        [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_yLabelContainer]-15-[_gridView]-10-|"
                                                                                         options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom
                                                                                         metrics:nil
                                                                                           views:NSDictionaryOfVariableBindings(_gridView, _yLabelContainer)]];
-        
         
         //Default settings.
         self.backgroundColor = [UIColor blackColor];
@@ -100,11 +95,14 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    
     [self removeAllLabels];
     [self setupAxisLabels];
-    [self setControlPointsWithXRatios:_xRatios];
-    [_gridView refreshWithXLineNum:_labelSource_x.count YLineNum:_labelSource_y.count];
+    [_gridView refreshWithXLineNum:_xLabelTitles.count YLineNum:_yLabelTitles.count];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self setControlPointsWithXRatios:_controlPositionRatios];
 }
 
 - (void)setupAxisLabels {
@@ -113,10 +111,10 @@
     UILabel *previousLabel;
     NSString *visualFormat;
     
-    //add labels for x axis
-    for (int i = 0; i < _labelSource_x.count; i++) {
+    //add x axis labels.
+    for (int i = 0; i < _xLabelTitles.count; i++) {
         
-        label = [self addLabelOnView:_xLabelContainer text:_labelSource_x[i]];
+        label = [self addLabelOnView:_xLabelContainer text:_xLabelTitles[i]];
         
         NSDictionary *viewsDic;
         if (i == 0) {
@@ -140,16 +138,16 @@
                                                                                relatedBy:NSLayoutRelationEqual
                                                                                   toItem:_xLabelContainer
                                                                                attribute:NSLayoutAttributeTrailing
-                                                                              multiplier:(i + CGFLOAT_MIN) / _labelSource_x.count
+                                                                              multiplier:(i + CGFLOAT_MIN) / _xLabelTitles.count
                                                                                 constant:0]]];
         previousLabel = label;
     }
     
-    //add labels for y axis
-    _labelSource_y = _isUp ? [[_labelSource_y reverseObjectEnumerator] allObjects] : _labelSource_y;
-    for (int i = 0; i < _labelSource_y.count; i++) {
+    //add y axis labels.
+    _yLabelTitles = _isUp ? [[_yLabelTitles reverseObjectEnumerator] allObjects] : _yLabelTitles;
+    for (int i = 0; i < _yLabelTitles.count; i++) {
         
-        label = [self addLabelOnView:_yLabelContainer text:_labelSource_y[i]];
+        label = [self addLabelOnView:_yLabelContainer text:_yLabelTitles[i]];
         
         NSDictionary *viewsDic;
         if (i == 0) {
@@ -168,7 +166,7 @@
                                                                                         options:0
                                                                                         metrics:nil
                                                                                           views:NSDictionaryOfVariableBindings(label)]];
-        CGFloat multiplier = ((_isUp ? 1 : 0) + i + CGFLOAT_MIN) / _labelSource_y.count;
+        CGFloat multiplier = ((_isUp ? 1 : 0) + i + CGFLOAT_MIN) / _yLabelTitles.count;
         [NSLayoutConstraint activateConstraints:@[[NSLayoutConstraint constraintWithItem:label
                                                                                attribute:NSLayoutAttributeCenterY
                                                                                relatedBy:NSLayoutRelationEqual
@@ -196,10 +194,7 @@
 
 - (void)removeAllLabels {
     
-    NSMutableArray *subviews = [[NSMutableArray alloc] init];
-    [subviews addObjectsFromArray:[_xLabelContainer subviews]];
-    [subviews addObjectsFromArray:[_yLabelContainer subviews]];
-    
+    NSArray *subviews = [[_xLabelContainer subviews] arrayByAddingObjectsFromArray:[_yLabelContainer subviews]];
     for(UIView *subV in subviews)
     {
         [subV removeFromSuperview];
@@ -222,6 +217,12 @@
     }
 }
 
+#pragma mark - DHGridView delegate
+
+- (void)didRedrawedGridView:(DHGridView *)grieView {
+    [self resetLine];
+}
+
 #pragma mark - API
 
 - (void)setLineColor:(UIColor *)lineColor {
@@ -241,8 +242,9 @@
 }
 
 - (void)refreshChart {
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
     [self setNeedsDisplay];
-    [self resetLine];
 }
 
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index {
@@ -256,37 +258,34 @@
 
     NSUInteger loopCount = MIN(yRatios.count, _controlPoints.count);
     for (int i = 0; i < loopCount; i++) {
-        [self refreshLineChartWithYRatio:((NSNumber *)yRatios[i]).floatValue atIndex:i];
+        [self refreshLineChartWithYRatio:yRatios[i].floatValue atIndex:i];
     }
 }
 
-- (void)updateWithXAxisLabels:(NSArray<NSString *> *)xLabels
-                  YAxisLabels:(NSArray<NSString *> *)yLabels
-       controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
-           immediatelyRefresh:(BOOL)refresh {
+- (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
+                  YAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
+            controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios {
 
-    _labelSource_x = xLabels;
-    _labelSource_y = yLabels;
-    _xRatios = xRatios;
-    
-    if (refresh) {
-        [self refreshChart];
-    }
+    _xLabelTitles = xLabelTitles;
+    _yLabelTitles = yLabelTitles;
+    _controlPositionRatios = xRatios;
+    [self refreshChart];
 }
 
 - (void)setControlPointsWithXRatios:(NSArray<NSNumber *> *)xRatios {
 
     if (!xRatios) return;
     
-    _xRatios = xRatios;
+    _controlPositionRatios = xRatios;
+    [_controlPositionRatios sortedArrayUsingSelector:@selector(compare:)];
+
     [_controlPoints removeAllObjects];
     CGFloat chartWidth = _gridView.frame.size.width;
-    [xRatios sortedArrayUsingSelector:@selector(compare:)];
     for(NSNumber *xRatioNum in xRatios)
     {
         CGFloat xRatio = [self validateValue:xRatioNum.floatValue from:0.0 to:1.0];
         CGFloat newPosition = xRatio * chartWidth;
-        [_controlPoints addObject:[[DHControllPoint alloc] initWithX:newPosition Y:_yAxisStartPosition]];
+        [_controlPoints addObject:[[DHControllPoint alloc] initWithPoint:CGPointMake(newPosition, _yAxisStartPosition)]];
     }
 }
 
