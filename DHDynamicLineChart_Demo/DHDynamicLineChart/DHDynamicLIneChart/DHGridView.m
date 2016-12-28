@@ -23,6 +23,7 @@
     
     if (self = [super init]) {
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        self.contentMode = UIViewContentModeRedraw;
         _xLineNum = 0;
         _yLineNum = 0;
         _lineColor = [UIColor whiteColor];

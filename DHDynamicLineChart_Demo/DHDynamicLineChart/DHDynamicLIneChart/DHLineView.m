@@ -59,7 +59,7 @@
 }
 
 - (void)drawLineWithControlPoints:(NSArray<DHControllPoint *> *)controlPoints {
-    _controlPoints = controlPoints;
+    _controlPoints = [controlPoints copy];
     [self setNeedsDisplay];
 }
 
