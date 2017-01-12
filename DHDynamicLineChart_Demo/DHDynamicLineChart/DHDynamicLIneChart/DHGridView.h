@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol DHGridViewDelegate <NSObject>
 
-- (void)didRedrawedGridView:(DHGridView *)grieView;
+- (void)didRedrawGridView:(DHGridView *)grieView;
 
 @end
 
@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDirectionUp:(BOOL)isUp;
 - (void)refreshWithXLineNum:(NSUInteger)xLineNum YLineNum:(NSUInteger)yLineNum;
+- (void)refreshWithDirectionUp:(BOOL)isUp;
 
 @end
 

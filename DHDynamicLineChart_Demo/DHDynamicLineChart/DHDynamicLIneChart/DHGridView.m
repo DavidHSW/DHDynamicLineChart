@@ -12,7 +12,6 @@
 {
     NSUInteger _xLineNum;
     NSUInteger _yLineNum;
-    CGFloat _chartOffset;
     BOOL _isUp;
 }
 @end
@@ -28,7 +27,6 @@
         _yLineNum = 0;
         _lineColor = [UIColor whiteColor];
         _lineWidth = 1.0;
-        _chartOffset = isUp ? -_lineWidth : _lineWidth;
         _isUp = isUp;
     }
     return self;
@@ -38,38 +36,45 @@
     
     CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
-    CGFloat xGridLineInterval = width / _xLineNum;
-    CGFloat yGridLineInterval = height / _yLineNum;
-    
+    CGFloat xGridLineInterval = (width - _lineWidth) / _xLineNum;
+    CGFloat yGridLineInterval = (height - _lineWidth) / _yLineNum;
+    CGFloat gridOffset = _lineWidth / 2;
+
     _yRange = height - yGridLineInterval - _lineWidth;
-    _yBase = _isUp ? height - _lineWidth : height - yGridLineInterval;
+    _yBase = _isUp ? height - gridOffset : height - yGridLineInterval;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, _lineWidth);
     CGContextSetStrokeColorWithColor(context, _lineColor.CGColor);
     
-    //draw x grid lines
+    //Draw x grid lines
     for (int i = 0; i < _xLineNum; i++) {
-        CGContextMoveToPoint(context, i * xGridLineInterval + _lineWidth, 0);
-        CGContextAddLineToPoint(context, i * xGridLineInterval + _lineWidth, height);
+        CGContextMoveToPoint(context, i * xGridLineInterval + gridOffset, 0);
+        CGContextAddLineToPoint(context, i * xGridLineInterval + gridOffset, height);
         CGContextStrokePath(context);
     }
     
-    //draw y grid lines
-    for (int i = 0; i < _yLineNum + 1; i++) {
-        CGContextMoveToPoint(context, 0, i * yGridLineInterval + _chartOffset);
-        CGContextAddLineToPoint(context, width, i * yGridLineInterval + _chartOffset);
+    //Draw y grid lines
+    NSUInteger start = _isUp ? 1 : 0;
+    for (int i = 0; i < _yLineNum; i++) {
+        CGContextMoveToPoint(context, 0, (i + start) * yGridLineInterval + gridOffset);
+        CGContextAddLineToPoint(context, width, (i + start) * yGridLineInterval + gridOffset);
         CGContextStrokePath(context);
     }
     
-    if ([_delegate respondsToSelector:@selector(didRedrawedGridView:)]) {
-        [_delegate didRedrawedGridView:self];
+    if ([_delegate respondsToSelector:@selector(didRedrawGridView:)]) {
+        [_delegate didRedrawGridView:self];
     }
 }
 
 - (void)refreshWithXLineNum:(NSUInteger)xLineNum YLineNum:(NSUInteger)yLineNum {
     _xLineNum = xLineNum;
     _yLineNum = yLineNum;
+    [self setNeedsDisplay];
+}
+
+- (void)refreshWithDirectionUp:(BOOL)isUp {
+    _isUp = isUp;
     [self setNeedsDisplay];
 }
 
