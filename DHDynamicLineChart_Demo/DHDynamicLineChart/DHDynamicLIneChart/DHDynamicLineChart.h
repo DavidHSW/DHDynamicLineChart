@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, DHDyanmicChartDirection) {
 
 - (instancetype)initWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
                         yAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
-                  controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+                  controlPointsByXRatios:(nullable NSArray<NSNumber *> *)xRatios
                                direction:(DHDyanmicChartDirection)direction;
 
 //Change y values.
@@ -35,15 +35,13 @@ typedef NS_ENUM(NSInteger, DHDyanmicChartDirection) {
 //Update chart components.
 - (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles;
 - (void)updateWithYAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles;
-- (void)updateWithControlPointsByXRatios:(NSArray<NSNumber *> *)xRatios;
+- (void)updateWithControlPointsByXRatios:(nullable NSArray<NSNumber *> *)xRatios;
 - (void)updateWithDirection:(DHDyanmicChartDirection)direction;
+- (void)switchDirection;
 - (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
                   YAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
-            controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
+            controlPointsByXRatios:(nullable NSArray<NSNumber *> *)xRatios
                          direction:(DHDyanmicChartDirection)direction;
-
-//Update control points.
-- (void)setControlPointsWithXRatios:(NSArray<NSNumber *> *)xRatios;
 
 @end
 

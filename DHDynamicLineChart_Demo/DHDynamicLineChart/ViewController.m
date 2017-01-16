@@ -45,6 +45,12 @@
                                                                                       views:NSDictionaryOfVariableBindings(_myLineChart)]];
 }
 
+- (void)resetSliders {
+    for (UISlider *slider in self.sliders) {
+        slider.value = 0;
+    }
+}
+
 - (IBAction)updateLineChart:(id)sender {
     UISlider *slider = (UISlider *)sender;
     if(slider.tag >= 0 && slider.tag < self.controlPoints_xRatio.count){
@@ -58,6 +64,7 @@
 
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 0) {
+        
         _controlPoints_xRatio = @[@0,@(1.0/7),@(2.0/7),@(3.0/7),@(4.0/7),@(5.0/7),@(6.0/7),@1];
         [self.myLineChart updateWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                     YAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
@@ -65,6 +72,7 @@
                                            direction:DHDyanmicChartDirectionDown];
     }
     else if (btn.tag == 1) {
+        
         _controlPoints_xRatio = @[@0,@(1.0/7),@(2.0/7),@(3.0/7),@(4.0/7),@(5.0/7),@(6.0/7),@1];
         [self.myLineChart updateWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                     YAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
@@ -72,32 +80,51 @@
                                            direction:DHDyanmicChartDirectionUp];
     }
     else if (btn.tag == 2) {
-        _controlPoints_xRatio = @[@0,@(1.0/6),@(2.0/6),@(3.0/6),@(4.0/6),@(5.0/6),@1];
+        
         [self.myLineChart updateWithXAxisLabelTitles:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
                                     YAxisLabelTitles:@[@"0",@"5",@"10",@"15",@"20",@"25"]
-                              controlPointsByXRatios:_controlPoints_xRatio
+                              controlPointsByXRatios:nil//Use default control position.
                                            direction:DHDyanmicChartDirectionUp];
-    }
-    else if(btn.tag == 3) {
-        NSMutableArray *yValues = [[NSMutableArray alloc] init];
-        for (int i = 0; i<100; i++) {
-            [yValues addObject:@((arc4random() % 10) / 10.0)];
-        }
-        [self.myLineChart refreshLineChartWithYRatios:yValues];
-    }
-    else {
-        NSMutableArray *xRatios = [[NSMutableArray alloc] init];
-        for (int i = 0; i<30; i++) {
-            [xRatios addObject:@((arc4random() % 1000) / 1000.0)];
-        }
-        [self.myLineChart setControlPointsWithXRatios:xRatios];
     }
 }
 
-- (void)resetSliders {
-    for (UISlider *slider in self.sliders) {
-        slider.value = 0;
+- (IBAction)randomYValues:(id)sender {
+    
+    [self resetSliders];
+    NSMutableArray *yValues = [[NSMutableArray alloc] init];
+    for (int i = 0; i<100; i++) {
+        [yValues addObject:@((arc4random() % 10) / 10.0)];
     }
+    [self.myLineChart refreshLineChartWithYRatios:yValues];
+}
+
+- (IBAction)updateControlPoints:(id)sender {
+    
+    [self resetSliders];
+    NSMutableArray *xRatios = [[NSMutableArray alloc] init];
+    for (int i = 0; i<30; i++) {
+        [xRatios addObject:@((arc4random() % 1000) / 1000.0)];
+    }
+    [self.myLineChart updateWithControlPointsByXRatios:xRatios];
+}
+
+- (IBAction)updateXLabels:(id)sender {
+    
+    [self resetSliders];
+    [self.myLineChart updateWithXAxisLabelTitles:@[@"First",@"Second",@"Third",@"Fourth",@"Fifth",@"Sixth",@"Seventh"]];
+    [self.myLineChart updateWithControlPointsByXRatios:nil];
+}
+
+- (IBAction)updateYLabels:(id)sender {
+    
+    [self resetSliders];
+    [self.myLineChart updateWithYAxisLabelTitles:@[@"1000",@"2000",@"3000",@"4000",@"5000",@"6000",@"7000"]];
+}
+
+- (IBAction)switchDirection:(id)sender {
+    
+    [self resetSliders];
+    [self.myLineChart switchDirection];
 }
 
 @end

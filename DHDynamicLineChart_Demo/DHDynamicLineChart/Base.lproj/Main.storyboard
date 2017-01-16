@@ -78,7 +78,7 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxg-nM-qAv">
-                                <rect key="frame" x="292" y="798" width="48" height="30"/>
+                                <rect key="frame" x="369" y="685" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Chart2"/>
                                 <connections>
@@ -86,7 +86,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3A-gD-R9G">
-                                <rect key="frame" x="409" y="798" width="48" height="30"/>
+                                <rect key="frame" x="486" y="685" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Chart3"/>
                                 <connections>
@@ -94,27 +94,56 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7M5-wB-J78">
-                                <rect key="frame" x="504" y="798" width="57" height="30"/>
+                                <rect key="frame" x="75" y="749" width="117" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Random"/>
+                                <state key="normal" title="Random y values"/>
                                 <connections>
                                     <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oyk-ra-RfV"/>
+                                    <action selector="randomYValues:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cza-4a-gd7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcy-sI-i2h">
-                                <rect key="frame" x="158" y="795" width="63" height="36"/>
+                                <rect key="frame" x="235" y="682" width="63" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Chart1"/>
                                 <connections>
                                     <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0is-Jn-V8d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-Co-Tfm">
-                                <rect key="frame" x="166" y="866" width="120" height="30"/>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-Co-Tfm">
+                                <rect key="frame" x="75" y="787" width="149" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add control point"/>
+                                <state key="normal" title="Update control points"/>
                                 <connections>
                                     <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U1p-5k-PFf"/>
+                                    <action selector="updateControlPoints:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UP8-Ek-kwT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utm-9E-xmX">
+                                <rect key="frame" x="337" y="749" width="107" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update x labels"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68r-Pc-Igu"/>
+                                    <action selector="updateXLabels:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHd-aH-hkb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUt-Ec-QUu">
+                                <rect key="frame" x="339" y="787" width="107" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update y labels"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cG0-3Y-a2u"/>
+                                    <action selector="updateYLabels:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dfl-hg-Qya"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0T-UH-YCp">
+                                <rect key="frame" x="553" y="749" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Switch direction"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bc4-Jb-JgU"/>
+                                    <action selector="switchDirection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aeI-NK-KaW"/>
                                 </connections>
                             </button>
                         </subviews>
