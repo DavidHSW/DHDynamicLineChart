@@ -11,10 +11,12 @@
 #import "DHDynamicLIneChart/DHLineView.h"
 
 @interface ViewController ()
-
-@property (strong, nonatomic) DHDynamicLineChart *myLineChart;
-@property (copy,nonatomic)NSArray *controlPoints_xRatio;
+{
+    NSArray<NSNumber *> *_yValues;
+}
 @property (strong, nonatomic) IBOutletCollection(UISlider) NSArray *sliders;
+@property (strong, nonatomic) DHDynamicLineChart *myLineChart;
+@property (copy,nonatomic) NSArray *controlPoints_xRatio;
 
 @end
 
@@ -69,7 +71,9 @@
         [self.myLineChart updateWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                     YAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
                               controlPointsByXRatios:_controlPoints_xRatio
-                                           direction:DHDyanmicChartDirectionDown];
+                                           direction:DHDyanmicChartDirectionDown
+                                            animated:YES
+                                          completion:nil];
     }
     else if (btn.tag == 1) {
         
@@ -77,14 +81,18 @@
         [self.myLineChart updateWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                                     YAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
                               controlPointsByXRatios:_controlPoints_xRatio
-                                           direction:DHDyanmicChartDirectionUp];
+                                           direction:DHDyanmicChartDirectionUp
+                                            animated:YES
+                                          completion:nil];
     }
     else if (btn.tag == 2) {
         
         [self.myLineChart updateWithXAxisLabelTitles:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat",@"Sun"]
                                     YAxisLabelTitles:@[@"0",@"5",@"10",@"15",@"20",@"25"]
                               controlPointsByXRatios:nil//Use default control position.
-                                           direction:DHDyanmicChartDirectionUp];
+                                           direction:DHDyanmicChartDirectionUp
+                                            animated:YES
+                                          completion:nil];
     }
 }
 
@@ -96,14 +104,15 @@
         [yValues addObject:@((arc4random() % 10) / 10.0)];
     }
     [self.myLineChart refreshLineChartWithYRatios:yValues];
+    _yValues = [yValues copy];
 }
 
 - (IBAction)updateControlPoints:(id)sender {
     
     [self resetSliders];
     NSMutableArray *xRatios = [[NSMutableArray alloc] init];
-    for (int i = 0; i<30; i++) {
-        [xRatios addObject:@((arc4random() % 1000) / 1000.0)];
+    for (int i = 0; i < 15; i++) {
+        [xRatios addObject:@((arc4random() % 100) / 100.0)];
     }
     [self.myLineChart updateWithControlPointsByXRatios:xRatios];
 }
@@ -123,8 +132,9 @@
 
 - (IBAction)switchDirection:(id)sender {
     
-    [self resetSliders];
-    [self.myLineChart switchDirection];
+    [self.myLineChart switchDirectionAnimated:YES completion:^(DHDynamicLineChart * _Nonnull chart) {
+        [chart refreshLineChartWithYRatios:_yValues];
+    }];
 }
 
 @end

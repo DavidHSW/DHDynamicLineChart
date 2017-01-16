@@ -30,6 +30,8 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     UIView *_xLabelContainer;
     UIView *_yLabelContainer;
     BOOL _isUp;
+    
+    completionBlock _completion;
 }
 @property (nonnull, nonatomic, copy) NSArray<NSString *> *yLabelTitles;
 @property (nullable, nonatomic, copy) NSArray<NSNumber *> *controlPositionRatios;
@@ -42,7 +44,7 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     //Default labels and control positions
     return [self initWithXAxisLabelTitles:@[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"]
                          yAxisLabelTitles:@[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"]
-                   controlPointsByXRatios:@[@0.125,@0.25,@0.375,@0.5]
+                   controlPointsByXRatios:nil
                                 direction:DHDyanmicChartDirectionUp];
 }
 
@@ -280,12 +282,11 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     }
 }
 
-- (void)updateGridViewAndConstraintsWithDirectionUp:(BOOL)isUp {
+- (void)updateGridViewAndConstraintsWithDirectionUp:(BOOL)isUp animated:(BOOL)animated{
     
     [_gridView refreshWithDirectionUp:_isUp];
     
-    [self layoutIfNeeded];
-    [UIView animateWithDuration:0.3 animations:^{
+    void(^flipConstraints)() = ^{
         if (_isUp) {
             [NSLayoutConstraint deactivateConstraints:@[_verticalConstraintsDirectionDown]];
             [NSLayoutConstraint activateConstraints:@[_verticalConstraintsDirectionUp]];
@@ -295,7 +296,16 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
             [NSLayoutConstraint activateConstraints:@[_verticalConstraintsDirectionDown]];
         }
         [self layoutIfNeeded];
-    }];
+    };
+    
+    if (animated) {
+        [self layoutIfNeeded];
+        [UIView animateWithDuration:0.3 animations:flipConstraints];
+    }
+    else {
+        flipConstraints();
+    }
+
     [self resetChart];
 }
 
@@ -312,6 +322,11 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
 
 - (void)didRedrawGridView:(DHGridView *)grieView {
     [self resetLine];
+    
+    if (_completion) {
+        _completion(self);
+        _completion = nil;
+    }
 }
 
 #pragma mark - API
@@ -367,28 +382,36 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     [self setControlPointsWithXRatios:xRatios];
 }
 
-- (void)updateWithDirection:(DHDyanmicChartDirection)direction {
+- (void)updateWithDirection:(DHDyanmicChartDirection)direction animated:(BOOL)animated completion:(nullable completionBlock)completion{
     
+    _completion = completion;
+
     _isUp = direction == DHDyanmicChartDirectionUp;
-    [self updateGridViewAndConstraintsWithDirectionUp:_isUp];
+    [self updateGridViewAndConstraintsWithDirectionUp:_isUp animated:animated];
 }
 
-- (void)switchDirection {
+- (void)switchDirectionAnimated:(BOOL)animated completion:(nonnull completionBlock)completion{
     
+    _completion = completion;
+
     _isUp = !_isUp;
-    [self updateGridViewAndConstraintsWithDirectionUp:_isUp];
+    [self updateGridViewAndConstraintsWithDirectionUp:_isUp animated:animated];
 }
 
 - (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
                   YAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
-                         direction:(DHDyanmicChartDirection)direction {
+                         direction:(DHDyanmicChartDirection)direction
+                          animated:(BOOL)animated
+                        completion:(nonnull completionBlock)completion {
 
     _xLabelTitles = xLabelTitles;
     _yLabelTitles = yLabelTitles;
     self.controlPositionRatios = xRatios;
     _isUp = direction == DHDyanmicChartDirectionUp;
-    [self updateGridViewAndConstraintsWithDirectionUp:_isUp];
+    _completion = completion;
+
+    [self updateGridViewAndConstraintsWithDirectionUp:_isUp animated:animated];
 }
 
 @end
