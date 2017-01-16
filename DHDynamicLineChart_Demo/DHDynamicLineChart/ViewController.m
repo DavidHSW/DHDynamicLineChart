@@ -11,12 +11,11 @@
 #import "DHDynamicLIneChart/DHLineView.h"
 
 @interface ViewController ()
-{
-    NSArray<NSNumber *> *_yValues;
-}
-@property (strong, nonatomic) IBOutletCollection(UISlider) NSArray *sliders;
-@property (strong, nonatomic) DHDynamicLineChart *myLineChart;
-@property (copy,nonatomic) NSArray *controlPoints_xRatio;
+
+@property (nonatomic, strong) IBOutletCollection(UISlider) NSArray *sliders;
+@property (nonatomic, strong) DHDynamicLineChart *myLineChart;
+@property (nonatomic, copy) NSArray *controlPoints_xRatio;
+@property (nonatomic, copy) NSArray<NSNumber *> *yValues;
 
 @end
 
@@ -104,7 +103,7 @@
         [yValues addObject:@((arc4random() % 10) / 10.0)];
     }
     [self.myLineChart refreshLineChartWithYRatios:yValues];
-    _yValues = [yValues copy];
+    self.yValues = [yValues copy];
 }
 
 - (IBAction)updateControlPoints:(id)sender {
@@ -132,8 +131,9 @@
 
 - (IBAction)switchDirection:(id)sender {
     
+    __weak typeof(self) weakSelf = self;
     [self.myLineChart switchDirectionAnimated:YES completion:^(DHDynamicLineChart * _Nonnull chart) {
-        [chart refreshLineChartWithYRatios:_yValues];
+        [chart refreshLineChartWithYRatios:weakSelf.yValues];
     }];
 }
 

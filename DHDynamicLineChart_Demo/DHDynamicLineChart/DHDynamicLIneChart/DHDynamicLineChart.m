@@ -390,7 +390,7 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     [self updateGridViewAndConstraintsWithDirectionUp:_isUp animated:animated];
 }
 
-- (void)switchDirectionAnimated:(BOOL)animated completion:(nonnull completionBlock)completion{
+- (void)switchDirectionAnimated:(BOOL)animated completion:(nullable completionBlock)completion{
     
     _completion = completion;
 
@@ -403,7 +403,7 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
                          direction:(DHDyanmicChartDirection)direction
                           animated:(BOOL)animated
-                        completion:(nonnull completionBlock)completion {
+                        completion:(nullable completionBlock)completion {
 
     _xLabelTitles = xLabelTitles;
     _yLabelTitles = yLabelTitles;
