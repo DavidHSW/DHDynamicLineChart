@@ -3,12 +3,12 @@
 ##Feature
 
 This chart allows you to:
-* customize the control position of line
-* dynamically control turning points at runtime;
-* update the labels of x/y axis at runtime;<br>
+* Customize the control position of line.
+* Dynamically control turning points at runtime.
+* Update the labels of x/y axis at runtime.<br>
 
 and it is:
-* self-adjusting in views of different size
+* Self-adjusting in views of different size(Autolayout).
 
 ##Installation
 
@@ -24,14 +24,13 @@ and it is:
     
         _xAxisLabels = @[@"125",@"250",@"500",@"1000",@"2000",@"4000",@"8000",@"10000"];//Label titles
         _yAxisLabels = @[@"0",@"-20",@"-40",@"-60",@"-80",@"-100",@"-120",@"-140"];
-        _positions = @[@0.125,@0.25,@0.375,@1];
+        _positions = @[@0,@(1.0/7),@(2.0/7),@(3.0/7),@(4.0/7),@(5.0/7),@(6.0/7),@1];
         
-        _myLineChart = [[DHDynamicLineChart alloc] initWithFram:CGRectMake(0, 0, 200, 200)
-                                                    xAxisLabels:_xAxisLabels
-                                                    yAxisLabels:_yAxisLabels
-                                       controlPointsXRatioValue:_positions];
-        _myLineChart.bgColor = [UIColor grayColor];
-        _myLineChart.lineWidth = 2;
+        _myLineChart = [[DHDynamicLineChart alloc] initWithXAxisLabelTitles:_xAxisLabels
+                                                           yAxisLabelTitles:_yAxisLabels
+                                                     controlPointsByXRatios:_positions
+                                                                  direction:DHDyanmicChartDirectionDown];//Facing up or down.
+        //Set grid line and line...
                                        
         [self.view addSubview:_myLineChart];
 
@@ -39,25 +38,40 @@ and it is:
 
 * Control line at different positions:
 
-        [self.myLineChart refreshLineChartWithYValue:slider.value atIndex:self.index];
+        [self.myLineChart refreshLineChartWithYRatio:yRatio atIndex:index];
         
         or
-        [self.myLineChart refreshLineChartWithYValues:slider.valueArray];
+        [self.myLineChart refreshLineChartWithYRatios:yRatios];
 
-  The `index` indicates the order of control points.
-  
-* If you are using slider and the its tag is consistent with the index of control points array, you can just refresh chart like this:
-
-        [self.myLineChart refreshLineChartForSlider:slider];
+  The `index` indicates the order of control points. The 'yRatio" indicates the 'actual value' / 'max value'([0,1]).
 
 * Update labels of x/y axises:
 
-        [self.myLineChart updateLabelsOfXAxis:self.newXLabels  YAxis:self.newYLabels];
+        //X
+        [self.myLineChart updateWithXAxisLabelTitles:xNewYLabels];
+        //Y
+        [self.myLineChart updateWithXAxisLabelTitles:yNewYLabels];
+        //Or
+        [self.myLineChart updateWithXAxisLabelTitles:xNewlabels
+                                    YAxisLabelTitles:yNewLabels
+                              controlPointsByXRatios:newControlXRatios
+                                           direction:newDirection
+                                            animated:YES
+                                          completion:nil];
 
-* When you update labels, you may also want to update control points:
+* When you update labels, you may want to update control points:
 
-        [self.myLineChart setControlPointsWithXRatioValues:self.newRatio];
+        [self.myLineChart updateWithControlPointsByXRatios:xNewRatios];
+        
+* If you want to flip chart upside down:
+
+        [self.myLineChart switchDirectionAnimated:YES completion:^(DHDynamicLineChart * _Nonnull chart) {
+                //Do some additional settings with 'chart'.
+        }];
+
+* Check demo for more details. Enjoy!
 
 #License
+
 This repo is under MIT license.
 
