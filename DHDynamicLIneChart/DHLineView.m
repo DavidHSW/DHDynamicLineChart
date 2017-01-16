@@ -9,9 +9,9 @@
 #import "DHLineView.h"
 
 @interface DHLineView()
-
-@property(copy,nonatomic)NSArray *controlPoints;
-
+{
+    NSArray<DHControllPoint *> *_controlPoints;
+}
 @end
 
 @implementation DHLineView
@@ -20,6 +20,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        self.contentMode = UIViewContentModeRedraw;
         _lineWidth = 1.0;
         _lineColor = [UIColor redColor];
     }
@@ -40,30 +41,26 @@
 
 -(void)drawRect:(CGRect)rect
 {
-    if (self.controlPoints.count < 1) {
+    if (_controlPoints.count < 1) {
         return;
     }
     
     //draw line
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
-    CGContextSetLineWidth(context, self.lineWidth);
-    CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
-    for (int i = 0; i < self.controlPoints.count - 1; i++) {//TODO may over bound
-        CGPoint fromPoint;
-        CGPoint toPoint;
-        [(NSValue *)self.controlPoints[i] getValue:&fromPoint];
-        [(NSValue *)self.controlPoints[i+1] getValue:&toPoint];
+    CGContextSetLineWidth(context, _lineWidth);
+    CGContextSetStrokeColorWithColor(context, _lineColor.CGColor);
+    for (int i = 0; i < _controlPoints.count - 1; i++) {
+        CGPoint fromPoint = _controlPoints[i].position;
+        CGPoint toPoint = _controlPoints[i + 1].position;
         CGContextMoveToPoint(context, fromPoint.x, fromPoint.y);
         CGContextAddLineToPoint(context, toPoint.x, toPoint.y);
         CGContextStrokePath(context);
     }
-
 }
 
--(void)drawLineWithControlPoints:(NSArray *)controlPoints
-{
-    self.controlPoints = controlPoints;
+- (void)drawLineWithControlPoints:(NSArray<DHControllPoint *> *)controlPoints {
+    _controlPoints = [controlPoints copy];
     [self setNeedsDisplay];
 }
 
