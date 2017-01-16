@@ -217,7 +217,7 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
         UILabel *l = [[UILabel alloc] init];
         l.translatesAutoresizingMaskIntoConstraints = NO;
         l.text = text;
-        l.minimumScaleFactor = 0.5;
+        l.minimumScaleFactor = 0.2;
         l.adjustsFontSizeToFitWidth = YES;
         l.textAlignment = NSTextAlignmentCenter;
         l.textColor = [UIColor whiteColor];
@@ -258,23 +258,6 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     [self removeAllLabels];
     [self setupAxisLabels];
     [_gridView refreshWithXLineNum:_xLabelTitles.count YLineNum:_yLabelTitles.count];
-}
-
-- (void)updateChartConstraints {
-    
-    [self layoutIfNeeded];
-    [UIView animateWithDuration:0.5 animations:^{
-        if (_isUp) {
-            [NSLayoutConstraint deactivateConstraints:@[_verticalConstraintsDirectionDown]];
-            [NSLayoutConstraint activateConstraints:@[_verticalConstraintsDirectionUp]];
-        }
-        else {
-            [NSLayoutConstraint deactivateConstraints:@[_verticalConstraintsDirectionUp]];
-            [NSLayoutConstraint activateConstraints:@[_verticalConstraintsDirectionDown]];
-        }
-        [self layoutIfNeeded];
-    }];
-    [self resetChart];
 }
 
 #pragma mark - DHGridView delegate
@@ -318,6 +301,23 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     }
 }
 
+
+- (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles {
+    
+}
+
+- (void)updateWithYAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles {
+    
+}
+
+- (void)updateWithControlPointsByXRatios:(NSArray<NSNumber *> *)xRatios {
+    
+}
+
+- (void)updateWithDirection:(DHDyanmicChartDirection)direction {
+    
+}
+
 - (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
                   YAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
@@ -329,20 +329,30 @@ static void *DHGridViewWidthContext = &DHGridViewWidthContext;
     _isUp = direction == DHDyanmicChartDirectionUp;
     [_gridView refreshWithDirectionUp:_isUp];
 
-    [self updateChartConstraints];
+    [self layoutIfNeeded];
+    [UIView animateWithDuration:0.3 animations:^{
+        if (_isUp) {
+            [NSLayoutConstraint deactivateConstraints:@[_verticalConstraintsDirectionDown]];
+            [NSLayoutConstraint activateConstraints:@[_verticalConstraintsDirectionUp]];
+        }
+        else {
+            [NSLayoutConstraint deactivateConstraints:@[_verticalConstraintsDirectionUp]];
+            [NSLayoutConstraint activateConstraints:@[_verticalConstraintsDirectionDown]];
+        }
+        [self layoutIfNeeded];
+    }];
+    [self resetChart];
 }
 
 - (void)setControlPointsWithXRatios:(NSArray<NSNumber *> *)xRatios {
 
     if (!xRatios) return;
     
-    _controlPositionRatios = xRatios;
-    [_controlPositionRatios sortedArrayUsingSelector:@selector(compare:)];
+    xRatios = [[[NSSet setWithArray:xRatios] allObjects] sortedArrayUsingSelector:@selector(compare:)];
+
     [_controlPoints removeAllObjects];
-    CGFloat chartWidth = _gridView.frame.size.width;
-    
-    for(NSNumber *xRatioNum in xRatios)
-    {
+    CGFloat chartWidth = _gridView.frame.size.width * (1.0 - 1.0 / _xLabelTitles.count);
+    for(NSNumber *xRatioNum in xRatios){
         CGFloat xRatio = [self validateValue:xRatioNum.floatValue from:0.0 to:1.0];
         CGFloat newPosition = xRatio * chartWidth;
         [_controlPoints addObject:[[DHControllPoint alloc] initWithPoint:CGPointMake(newPosition, _gridView.yBase)]];

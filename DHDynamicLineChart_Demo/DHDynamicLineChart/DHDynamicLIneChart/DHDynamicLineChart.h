@@ -27,17 +27,22 @@ typedef NS_ENUM(NSInteger, DHDyanmicChartDirection) {
                   controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
                                direction:(DHDyanmicChartDirection)direction;
 
+//Change y values.
 - (void)resetLine;
-
 - (void)refreshLineChartWithYRatio:(CGFloat)yRatio atIndex:(NSInteger)index;
-
 - (void)refreshLineChartWithYRatios:(NSArray<NSNumber *> *)yRatios;
 
+//Update chart components.
+- (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles;
+- (void)updateWithYAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles;
+- (void)updateWithControlPointsByXRatios:(NSArray<NSNumber *> *)xRatios;
+- (void)updateWithDirection:(DHDyanmicChartDirection)direction;
 - (void)updateWithXAxisLabelTitles:(NSArray<NSString *> *)xLabelTitles
                   YAxisLabelTitles:(NSArray<NSString *> *)yLabelTitles
             controlPointsByXRatios:(NSArray<NSNumber *> *)xRatios
                          direction:(DHDyanmicChartDirection)direction;
 
+//Update control points.
 - (void)setControlPointsWithXRatios:(NSArray<NSNumber *> *)xRatios;
 
 @end

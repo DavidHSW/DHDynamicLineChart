@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,49 +22,114 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="600" translatesAutoresizingMaskIntoConstraints="NO" id="hli-Oc-wr7">
-                                <rect key="frame" x="181" y="467" width="229" height="31"/>
+                                <rect key="frame" x="94" y="467" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="4eN-tc-MxH"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="M22-rD-4DH">
-                                <rect key="frame" x="181" y="514" width="229" height="31"/>
+                                <rect key="frame" x="94" y="514" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="GF0-cH-2Xb"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="KaB-ot-vJX">
-                                <rect key="frame" x="181" y="561" width="229" height="31"/>
+                                <rect key="frame" x="94" y="561" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="jYt-3R-pAw"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="NWN-Kw-c0O">
-                                <rect key="frame" x="181" y="610" width="229" height="31"/>
+                                <rect key="frame" x="94" y="610" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="Unr-Mq-hpw"/>
                                 </connections>
                             </slider>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-jE-3w0">
-                                <rect key="frame" x="443" y="508" width="230" height="29"/>
+                            <slider opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="600" translatesAutoresizingMaskIntoConstraints="NO" id="ede-eZ-2pP">
+                                <rect key="frame" x="437" y="467" width="229" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                </segments>
                                 <connections>
-                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="wbJ-AO-EoL"/>
+                                    <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="Qla-Az-mFf"/>
                                 </connections>
-                            </segmentedControl>
+                            </slider>
+                            <slider opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="u9C-5v-Ff8">
+                                <rect key="frame" x="437" y="514" width="229" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="O6e-GX-4bx"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="cny-wD-klT">
+                                <rect key="frame" x="437" y="561" width="229" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="VZ9-qm-sOO"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="140" translatesAutoresizingMaskIntoConstraints="NO" id="Nvs-Z2-1Uc">
+                                <rect key="frame" x="437" y="610" width="229" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="updateLineChart:" destination="BYZ-38-t0r" eventType="valueChanged" id="r3c-Nc-aLc"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxg-nM-qAv">
+                                <rect key="frame" x="292" y="798" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Chart2"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rmw-7Z-zpk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3A-gD-R9G">
+                                <rect key="frame" x="409" y="798" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Chart3"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gMm-VP-f6B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7M5-wB-J78">
+                                <rect key="frame" x="504" y="798" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Random"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oyk-ra-RfV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcy-sI-i2h">
+                                <rect key="frame" x="158" y="795" width="63" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Chart1"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0is-Jn-V8d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-Co-Tfm">
+                                <rect key="frame" x="166" y="866" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add control point"/>
+                                <connections>
+                                    <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U1p-5k-PFf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outletCollection property="sliders" destination="hli-Oc-wr7" id="nIJ-JA-x0l"/>
+                        <outletCollection property="sliders" destination="M22-rD-4DH" id="uQV-JY-Auh"/>
+                        <outletCollection property="sliders" destination="KaB-ot-vJX" id="Rll-fw-ZsV"/>
+                        <outletCollection property="sliders" destination="NWN-Kw-c0O" id="aVL-lo-HZr"/>
+                        <outletCollection property="sliders" destination="ede-eZ-2pP" id="8wR-Gm-lNd"/>
+                        <outletCollection property="sliders" destination="u9C-5v-Ff8" id="rWx-Pc-TBW"/>
+                        <outletCollection property="sliders" destination="cny-wD-klT" id="YFc-o3-eJg"/>
+                        <outletCollection property="sliders" destination="Nvs-Z2-1Uc" id="ewh-O2-bzf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
