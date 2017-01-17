@@ -111,9 +111,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-Co-Tfm">
-                                <rect key="frame" x="75" y="787" width="149" height="30"/>
+                                <rect key="frame" x="72" y="787" width="155" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Update control points"/>
+                                <state key="normal" title="Random control points"/>
                                 <connections>
                                     <action selector="changeChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U1p-5k-PFf"/>
                                     <action selector="updateControlPoints:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UP8-Ek-kwT"/>
