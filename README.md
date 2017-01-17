@@ -10,6 +10,10 @@ This chart allows you to:
 and it is:
 * Self-adjusting in views of different size(Autolayout).
 
+##Demo
+
+ ![img](https://github.com/DavidHSW/DHDynamicLineChart/blob/master/DemoGif.gif)
+
 ##Installation
 
 * Simply drag the folder `DHDynamicLineChart` into your project and import `DHDynamicLineChart.h` in your file:
