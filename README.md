@@ -1,6 +1,6 @@
 # DHDynamicLineChart
 
-##Feature
+## Feature
 
 This chart allows you to:
 * Customize the control position of line.
@@ -10,11 +10,11 @@ This chart allows you to:
 and it is:
 * Self-adjusting in views of different size(Autolayout).
 
-##Demo
+## Demo
 
  ![img](https://github.com/DavidHSW/DHDynamicLineChart/blob/master/DemoGif.gif)
 
-##Installation
+## Installation
 
 * Simply drag the folder `DHDynamicLineChart` into your project and import `DHDynamicLineChart.h` in your file:
 
@@ -22,7 +22,7 @@ and it is:
 
 * You also need to add `CoreGraphic` library into your project. 
 
-##How to use
+## How to use
 
 * Initialization:
     
@@ -75,7 +75,7 @@ and it is:
 
 * Check demo for more details. Enjoy!
 
-#License
+# License
 
 This repo is under MIT license.
 
