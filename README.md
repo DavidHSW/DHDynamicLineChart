@@ -75,7 +75,7 @@ and it is:
 
 * Check demo for more details. Enjoy!
 
-# License
+## License
 
 This repo is under MIT license.
 
