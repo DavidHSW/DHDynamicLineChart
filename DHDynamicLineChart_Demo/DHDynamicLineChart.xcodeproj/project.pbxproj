@@ -15,10 +15,10 @@
 		686F8A451C0C3EDA00F4B1CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686F8A431C0C3EDA00F4B1CE /* LaunchScreen.xib */; };
 		686F8A511C0C3EDA00F4B1CE /* DHDynamicLineChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A501C0C3EDA00F4B1CE /* DHDynamicLineChartTests.m */; };
 		686F8A5E1C0C400F00F4B1CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F8A5D1C0C400F00F4B1CE /* CoreGraphics.framework */; };
-		686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */; };
-		686F8A711C10217700F4B1CE /* DHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F8A6F1C10217700F4B1CE /* DHLineView.m */; };
-		A210BEC01E0D304700BB3B7B /* DHControllPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */; };
-		A210BEE41E124CD600BB3B7B /* DHGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A210BEE31E124CD600BB3B7B /* DHGridView.m */; };
+		A2FC23B81E8F9EE00096B72C /* DHControllPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC23B11E8F9EE00096B72C /* DHControllPoint.m */; };
+		A2FC23B91E8F9EE00096B72C /* DHDynamicLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC23B31E8F9EE00096B72C /* DHDynamicLineChart.m */; };
+		A2FC23BA1E8F9EE00096B72C /* DHGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC23B51E8F9EE00096B72C /* DHGridView.m */; };
+		A2FC23BB1E8F9EE00096B72C /* DHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC23B71E8F9EE00096B72C /* DHLineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,14 +46,14 @@
 		686F8A4F1C0C3EDA00F4B1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		686F8A501C0C3EDA00F4B1CE /* DHDynamicLineChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChartTests.m; sourceTree = "<group>"; };
 		686F8A5D1C0C400F00F4B1CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		686F8A6C1C10217700F4B1CE /* DHDynamicLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDynamicLineChart.h; sourceTree = "<group>"; };
-		686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChart.m; sourceTree = "<group>"; };
-		686F8A6E1C10217700F4B1CE /* DHLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLineView.h; sourceTree = "<group>"; };
-		686F8A6F1C10217700F4B1CE /* DHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLineView.m; sourceTree = "<group>"; };
-		A210BEBE1E0D304700BB3B7B /* DHControllPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHControllPoint.h; sourceTree = "<group>"; };
-		A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHControllPoint.m; sourceTree = "<group>"; };
-		A210BEE21E124CD600BB3B7B /* DHGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGridView.h; sourceTree = "<group>"; };
-		A210BEE31E124CD600BB3B7B /* DHGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGridView.m; sourceTree = "<group>"; };
+		A2FC23B01E8F9EE00096B72C /* DHControllPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHControllPoint.h; sourceTree = "<group>"; };
+		A2FC23B11E8F9EE00096B72C /* DHControllPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHControllPoint.m; sourceTree = "<group>"; };
+		A2FC23B21E8F9EE00096B72C /* DHDynamicLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDynamicLineChart.h; sourceTree = "<group>"; };
+		A2FC23B31E8F9EE00096B72C /* DHDynamicLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHDynamicLineChart.m; sourceTree = "<group>"; };
+		A2FC23B41E8F9EE00096B72C /* DHGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGridView.h; sourceTree = "<group>"; };
+		A2FC23B51E8F9EE00096B72C /* DHGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGridView.m; sourceTree = "<group>"; };
+		A2FC23B61E8F9EE00096B72C /* DHLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLineView.h; sourceTree = "<group>"; };
+		A2FC23B71E8F9EE00096B72C /* DHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,7 @@
 				686F8A391C0C3EDA00F4B1CE /* AppDelegate.m */,
 				686F8A3B1C0C3EDA00F4B1CE /* ViewController.h */,
 				686F8A3C1C0C3EDA00F4B1CE /* ViewController.m */,
-				686F8A6B1C10217700F4B1CE /* DHDynamicLIneChart */,
+				A2FC23AF1E8F9EE00096B72C /* DHDynamicLineChart */,
 				686F8A3E1C0C3EDA00F4B1CE /* Main.storyboard */,
 				686F8A411C0C3EDA00F4B1CE /* Images.xcassets */,
 				686F8A431C0C3EDA00F4B1CE /* LaunchScreen.xib */,
@@ -136,19 +136,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		686F8A6B1C10217700F4B1CE /* DHDynamicLIneChart */ = {
+		A2FC23AF1E8F9EE00096B72C /* DHDynamicLineChart */ = {
 			isa = PBXGroup;
 			children = (
-				686F8A6C1C10217700F4B1CE /* DHDynamicLineChart.h */,
-				686F8A6D1C10217700F4B1CE /* DHDynamicLineChart.m */,
-				A210BEE21E124CD600BB3B7B /* DHGridView.h */,
-				A210BEE31E124CD600BB3B7B /* DHGridView.m */,
-				686F8A6E1C10217700F4B1CE /* DHLineView.h */,
-				686F8A6F1C10217700F4B1CE /* DHLineView.m */,
-				A210BEBE1E0D304700BB3B7B /* DHControllPoint.h */,
-				A210BEBF1E0D304700BB3B7B /* DHControllPoint.m */,
+				A2FC23B01E8F9EE00096B72C /* DHControllPoint.h */,
+				A2FC23B11E8F9EE00096B72C /* DHControllPoint.m */,
+				A2FC23B21E8F9EE00096B72C /* DHDynamicLineChart.h */,
+				A2FC23B31E8F9EE00096B72C /* DHDynamicLineChart.m */,
+				A2FC23B41E8F9EE00096B72C /* DHGridView.h */,
+				A2FC23B51E8F9EE00096B72C /* DHGridView.m */,
+				A2FC23B61E8F9EE00096B72C /* DHLineView.h */,
+				A2FC23B71E8F9EE00096B72C /* DHLineView.m */,
 			);
-			path = DHDynamicLIneChart;
+			name = DHDynamicLineChart;
+			path = ../../DHDynamicLineChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,13 +252,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A210BEE41E124CD600BB3B7B /* DHGridView.m in Sources */,
+				A2FC23B91E8F9EE00096B72C /* DHDynamicLineChart.m in Sources */,
 				686F8A3D1C0C3EDA00F4B1CE /* ViewController.m in Sources */,
 				686F8A3A1C0C3EDA00F4B1CE /* AppDelegate.m in Sources */,
-				686F8A711C10217700F4B1CE /* DHLineView.m in Sources */,
-				A210BEC01E0D304700BB3B7B /* DHControllPoint.m in Sources */,
-				686F8A701C10217700F4B1CE /* DHDynamicLineChart.m in Sources */,
 				686F8A371C0C3EDA00F4B1CE /* main.m in Sources */,
+				A2FC23BA1E8F9EE00096B72C /* DHGridView.m in Sources */,
+				A2FC23BB1E8F9EE00096B72C /* DHLineView.m in Sources */,
+				A2FC23B81E8F9EE00096B72C /* DHControllPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
