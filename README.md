@@ -17,9 +17,10 @@ and it is:
 ## Installation
 ### Cocoapods
 * Add `DHDynamicLineChart` to your Podsfile:
-
+```Ruby
       source 'https://github.com/CocoaPods/Specs.git'
       pod 'DHDynamicLineChart'
+```
 
 ### Easy use
 * Simply drag the folder `DHDynamicLineChart` into your project and import `DHDynamicLineChart.h` in your file:
